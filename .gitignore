@@ -1,0 +1,14 @@
+.env
+.DS_Store
+.idea/
+.vscode/
+*.log
+db/dump*.sql
+
+/prestashop/*
+!/prestashop/themes
+/prestashop/themes/*
+!/prestashop/modules
+/prestashop/modules/*
+!/prestashop/override
+/prestashop/override/*

@@ -1,0 +1,60 @@
+name: design-presta-2
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: presta2-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-p${DB_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  prestashop:
+    image: prestashop/prestashop:8.2.7-8.1-apache
+    container_name: presta2-shop
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "1001:80"
+    environment:
+      DB_SERVER: mysql
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWD: ${DB_PASSWORD}
+      DB_PREFIX: ps_
+      PS_DOMAIN: localhost:1001
+      PS_INSTALL_AUTO: 0
+      PS_DEV_MODE: 1
+      PS_ENABLE_SSL: 0
+    volumes:
+      - ./prestashop:/var/www/html
+
+  phpmyadmin:
+    image: phpmyadmin:5
+    container_name: presta2-phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "1002:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 256M
+
+volumes:
+  mysql_data:
