@@ -12,3 +12,4 @@ db/dump*.sql
 /prestashop/modules/*
 !/prestashop/override
 /prestashop/override/*
+CLAUDE.md
