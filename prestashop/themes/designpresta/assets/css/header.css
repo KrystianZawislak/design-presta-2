@@ -7,29 +7,62 @@
 .header-nav-actions {
   display: flex;
   align-items: center;
-  gap: 200px;
+  gap: var(--dp-space-200);
 }
 
 .header-nav-actions-1 {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: var(--dp-space-32);
 }
 
 .header-nav-actions-2 {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--dp-space-12);
 }
 
 #_desktop_contact_link #contact-link {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--dp-space-4);
 }
 
 .header-nav-store-locator {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--dp-space-4);
+}
+
+#header .header-nav #_desktop_contact_link #contact-link {
+  margin-top: 0;
+  color: var(--dp-color-neutral-black);
+}
+
+#header .header-nav #_desktop_contact_link:hover #contact-link {
+  color: #24b9d7;
+}
+
+#header .header-nav .user-info {
+  margin-top: 0;
+  margin-left: 0;
+  text-align: left;
+}
+
+#header .header-nav .user-info .account {
+  margin-left: 0;
+}
+
+#header .header-nav .blockcart {
+  background: none;
+  height: auto;
+  padding: 0;
+  margin-left: 0;
+  text-align: left;
+  white-space: normal;
+  color: var(--dp-color-neutral-black);
+}
+
+#header .header-nav .blockcart a {
+  color: var(--dp-color-neutral-black);
 }
