@@ -23,16 +23,12 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <div id="_desktop_cart">
-  <div class="blockcart cart-preview {if $cart.products_count > 0}active{else}inactive{/if}" data-refresh-url="{$refresh_url}">
+  <div class="blockcart cart-preview" data-refresh-url="{$refresh_url}">
     <div class="header">
-      {if $cart.products_count > 0}
-        <a rel="nofollow" aria-label="{l s='Shopping cart link containing %nbProducts% product(s)' sprintf=['%nbProducts%' => $cart.products_count] d='Shop.Theme.Checkout'}" href="{$cart_url}">
-      {/if}
+      <a rel="nofollow" aria-label="{l s='Shopping cart link containing %nbProducts% product(s)' sprintf=['%nbProducts%' => $cart.products_count] d='Shop.Theme.Checkout'}" href="{$cart_url}">
         {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/cart.svg"}
         <span class="sr-only">{l s='Cart' d='Shop.Theme.Checkout'} ({$cart.products_count})</span>
-      {if $cart.products_count > 0}
-        </a>
-      {/if}
+      </a>
     </div>
   </div>
 </div>
