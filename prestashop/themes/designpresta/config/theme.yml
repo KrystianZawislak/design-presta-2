@@ -1,0 +1,25 @@
+name: designpresta
+display_name: Design Presta
+version: 1.0.0
+author:
+  name: "Krystian Zawislak"
+  url: "https://github.com/KrystianZawislak/design-presta-2"
+
+parent: classic
+
+assets:
+  use_parent_assets: true
+  css:
+    all:
+      - id: designpresta-tokens
+        path: assets/css/tokens.css
+        media: all
+        priority: 300
+      - id: designpresta-header
+        path: assets/css/header.css
+        media: all
+        priority: 310
+      - id: designpresta-footer
+        path: assets/css/footer.css
+        media: all
+        priority: 320

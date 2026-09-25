@@ -8,6 +8,7 @@ db/dump*.sql
 /prestashop/*
 !/prestashop/themes
 /prestashop/themes/*
+!/prestashop/themes/designpresta
 !/prestashop/modules
 /prestashop/modules/*
 !/prestashop/override
