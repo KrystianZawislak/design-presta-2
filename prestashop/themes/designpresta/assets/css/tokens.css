@@ -1,3 +1,142 @@
 :root {
+  --dp-color-brand-xenon-base: #003DFF;
+  --dp-color-brand-black-base: #23263B;
 
+  --dp-color-xenon-lightest: #F2F4FF;
+  --dp-color-xenon-light: #A2AFFF;
+  --dp-color-xenon-base: #003DFF;
+  --dp-color-xenon-dark: #0738D2;
+  --dp-color-xenon-darkest: #0E297E;
+
+  --dp-color-mercury-lightest: #DFF2F8;
+  --dp-color-mercury-light: #98DFF4;
+  --dp-color-mercury-base: #5BBFDD;
+  --dp-color-mercury-dark: #39ABCD;
+  --dp-color-mercury-darkest: #3087A1;
+
+  --dp-color-uranus-lightest: #D9FFFC;
+  --dp-color-uranus-light: #9EF4EE;
+  --dp-color-uranus-base: #89D9D3;
+  --dp-color-uranus-dark: #4CC9C0;
+  --dp-color-uranus-darkest: #219088;
+
+  --dp-color-venus-lightest: #FFD9F0;
+  --dp-color-venus-light: #F988CD;
+  --dp-color-venus-base: #F82CAA;
+  --dp-color-venus-dark: #DB2796;
+  --dp-color-venus-darkest: #9E0062;
+
+  --dp-color-neutral-white: #FFFFFF;
+  --dp-color-neutral-lightest: #F4F4F5;
+  --dp-color-neutral-light: #D3D4D8;
+  --dp-color-neutral-dark: #91929D;
+  --dp-color-neutral-darkest: #4F5162;
+  --dp-color-neutral-black: #23263B;
+  --dp-color-neutral-overlay-dark: rgba(35, 38, 59, 0.6);
+  --dp-color-neutral-overlay-light: rgba(35, 38, 59, 0.4);
+
+  --dp-color-grey-000: #FFFFFF;
+  --dp-color-grey-800: #36395A;
+  --dp-color-grey-900: #23263B;
+  --dp-color-interface-white: #FFFFFF;
+  --dp-color-guidelines-background: #3E3E3E;
+
+  --dp-color-success-dark: #06AF87;
+  --dp-color-success-light: #B9FFEE;
+  --dp-color-informative-dark: #1363C1;
+  --dp-color-informative-light: #D1E5FD;
+  --dp-color-warning-dark: #E07E0B;
+  --dp-color-warning-light: #FFE2BF;
+  --dp-color-error-dark: #D9293E;
+  --dp-color-error-light: #FFD4DA;
+
+  --dp-gradient-solstice: linear-gradient(220deg, #9EF4EE 0%, #39ABCD 51%, #003DFF 100%);
+  --dp-gradient-nova: linear-gradient(222.5deg, #F988CD 0%, #003DFF 100%);
+  --dp-gradient-comet: linear-gradient(221.8deg, #DB2796 0%, #FFD9F0 100%);
+  --dp-gradient-twilight: linear-gradient(221.8deg, #003DFF 0%, #CAD1FF 100%);
+
+  --dp-space-4: 4px;
+  --dp-space-8: 8px;
+  --dp-space-12: 12px;
+  --dp-space-16: 16px;
+  --dp-space-24: 24px;
+  --dp-space-32: 32px;
+  --dp-space-40: 40px;
+  --dp-space-48: 48px;
+  --dp-space-64: 64px;
+
+  --dp-grid-desktop-width: 1440px;
+  --dp-grid-desktop-columns: 12;
+  --dp-grid-desktop-gutter: 24px;
+  --dp-grid-desktop-margin: 80px;
+  --dp-grid-mobile-width: 375px;
+  --dp-grid-mobile-columns: 4;
+  --dp-grid-mobile-gutter: 26px;
+  --dp-grid-mobile-margin: 16px;
+
+  --dp-font-family-base: "Inter", system-ui, sans-serif;
+  --dp-font-family-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --dp-font-weight-light: 300;
+  --dp-font-weight-regular: 400;
+  --dp-font-weight-semibold: 600;
+  --dp-font-weight-bold: 700;
+  --dp-font-weight-extrabold: 800;
+
+  --dp-font-size-h1: 48px;
+  --dp-line-height-h1: 1;
+  --dp-letter-spacing-h1: -0.96px;
+
+  --dp-font-size-h2: 40px;
+  --dp-line-height-h2: 1.2;
+  --dp-letter-spacing-h2: -0.8px;
+
+  --dp-font-size-h3: 32px;
+  --dp-line-height-h3: 1.1;
+  --dp-letter-spacing-h3: 2px;
+
+  --dp-font-size-h4: 16px;
+  --dp-line-height-h4: 1.2;
+  --dp-letter-spacing-h4: 1px;
+
+  --dp-font-size-subhead: 20px;
+  --dp-line-height-subhead: 1.4;
+  --dp-letter-spacing-subhead: 0;
+
+  --dp-font-size-body: 14px;
+  --dp-line-height-body: 18px;
+  --dp-line-height-body-bold: 1.4;
+  --dp-letter-spacing-body: 0;
+
+  --dp-font-size-small: 12px;
+  --dp-line-height-small: 1.4;
+  --dp-letter-spacing-small: 0;
+
+  --dp-font-size-label: 14px;
+  --dp-line-height-label: 1.4;
+  --dp-letter-spacing-label: 1px;
+  --dp-text-transform-label: uppercase;
+
+  --dp-font-size-button: 14px;
+  --dp-line-height-button: 24px;
+  --dp-letter-spacing-button: 1px;
+
+  --dp-font-size-tag: 9px;
+  --dp-line-height-tag: 1.4;
+  --dp-letter-spacing-tag: 0;
+  --dp-text-transform-tag: uppercase;
+
+  --dp-font-size-mono-body: 26px;
+  --dp-line-height-mono-body: 1.5;
+  --dp-font-size-mono-h3: 36px;
+  --dp-line-height-mono-h3: 1.32;
+  --dp-font-size-mono-h4: 24px;
+  --dp-line-height-mono-h4: 1.32;
+  --dp-font-size-mono-h5: 20px;
+  --dp-line-height-mono-h5: 1.5;
+
+  --dp-shadow-medium: 0 8px 16px rgba(35, 38, 59, 0.25);
+  --dp-shadow-large: 0 12px 32px rgba(35, 38, 59, 0.25);
+  --dp-shadow-500: 0 20px 32px -8px rgba(33, 36, 61, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  --dp-backdrop-blur: 6px;
 }
