@@ -83,6 +83,7 @@
     <div class="container">
        <div class="row">
         <div class="header-top-right col-md-12 col-sm-12 position-static">
+          {hook h='displayDesignMenuLinks'}
           {hook h='displayTop'}
         </div>
       </div>

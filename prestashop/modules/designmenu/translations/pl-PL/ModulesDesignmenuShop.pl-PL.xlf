@@ -6,6 +6,10 @@
         <source>Shop section</source>
         <target>Dział sklepu</target>
       </trans-unit>
+      <trans-unit id="2" resname="Main menu">
+        <source>Main menu</source>
+        <target>Menu główne</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

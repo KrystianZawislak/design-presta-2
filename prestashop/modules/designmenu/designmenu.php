@@ -30,9 +30,6 @@ class DesignMenu extends Module
         $this->description = $this->trans('Header mode switcher: defines the modes shown in the header and the links each of them shows.', [], 'Modules.Designmenu.Admin');
 
         $this->ps_versions_compliancy = ['min' => '8.0.0', 'max' => _PS_VERSION_];
-
-        Shop::addTableAssociation(DesignMenuMode::$definition['table'], ['type' => 'shop']);
-        Shop::addTableAssociation(DesignMenuLink::$definition['table'], ['type' => 'shop']);
     }
 
     public function install()
@@ -40,6 +37,7 @@ class DesignMenu extends Module
         return parent::install()
             && $this->installDb()
             && $this->registerHook('displayDesignMenuModes')
+            && $this->registerHook('displayDesignMenuLinks')
             && Configuration::updateValue(self::ENABLED, 1);
     }
 
@@ -143,6 +141,47 @@ class DesignMenu extends Module
         ]);
 
         return $this->fetch('module:designmenu/views/templates/hook/modes.tpl');
+    }
+
+    public function hookDisplayDesignMenuLinks()
+    {
+        $links = $this->getFrontLinks();
+
+        if (!$links) {
+            return '';
+        }
+
+        $this->context->smarty->assign(['designmenu_links' => $links]);
+
+        return $this->fetch('module:designmenu/views/templates/hook/links.tpl');
+    }
+
+    protected function getFrontLinks(): array
+    {
+        $idLang = (int) $this->context->language->id;
+        $links = [];
+
+        $rows = DesignMenuLink::getLinks(
+            $idLang,
+            (int) $this->context->shop->id,
+            true,
+            $this->getSelectedModeId()
+        );
+
+        foreach ($rows as $row) {
+            $url = DesignMenuTarget::resolveUrl($this->context->link, $row, $idLang);
+
+            if ($url === '') {
+                continue;
+            }
+
+            $links[] = [
+                'label' => $row['label'],
+                'url' => $url,
+            ];
+        }
+
+        return $links;
     }
 
     public function selectMode($idMode): bool

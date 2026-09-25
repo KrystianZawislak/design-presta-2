@@ -29,6 +29,13 @@ class DesignMenuMode extends ObjectModel
         ],
     ];
 
+    public function __construct($id = null, $idLang = null, $idShop = null)
+    {
+        Shop::addTableAssociation(self::$definition['table'], ['type' => 'shop']);
+
+        parent::__construct($id, $idLang, $idShop);
+    }
+
     public static function getNextPosition(): int
     {
         return 1 + (int) Db::getInstance()->getValue(
