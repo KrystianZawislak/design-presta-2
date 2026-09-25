@@ -57,18 +57,9 @@
     {/if}
 {/function}
 
-{if isset($designmenu_visible_items)}
-  {assign var=top_nodes value=[]}
-  {foreach from=$menu.children item=node}
-    {if isset($designmenu_visible_items[$node.page_identifier])}
-      {append var=top_nodes value=$node}
-    {/if}
-  {/foreach}
-{else}
-  {assign var=top_nodes value=$menu.children}
-{/if}
+{assign var=menu_root value=$designmenu_menu|default:$menu}
 
 <div class="menu js-top-menu position-static hidden-sm-down" id="_desktop_top_menu">
-    {menu nodes=$top_nodes}
+    {menu nodes=$menu_root.children}
     <div class="clearfix"></div>
 </div>

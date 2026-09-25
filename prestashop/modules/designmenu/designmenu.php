@@ -106,7 +106,31 @@ class DesignMenu extends Module
             return;
         }
 
-        $this->context->smarty->assign('designmenu_visible_items', array_fill_keys($identifiers, true));
+        $tree = $this->getMainMenuTree();
+
+        if (!$tree) {
+            return;
+        }
+
+        $tree['children'] = $this->filterNodes($tree['children'], array_fill_keys($identifiers, true));
+
+        $this->context->smarty->assign('designmenu_menu', $tree);
+    }
+
+    protected function filterNodes(array $nodes, array $allowed): array
+    {
+        $kept = [];
+
+        foreach ($nodes as $node) {
+            if ($node['page_identifier'] && !isset($allowed[$node['page_identifier']])) {
+                continue;
+            }
+
+            $node['children'] = $this->filterNodes($node['children'], $allowed);
+            $kept[] = $node;
+        }
+
+        return $kept;
     }
 
     public function hookDisplayDesignMenuModes()
@@ -200,6 +224,21 @@ class DesignMenu extends Module
         return $modes;
     }
 
+    protected function getMainMenuTree(): array
+    {
+        $mainMenu = Module::getInstanceByName('ps_mainmenu');
+
+        if (!$mainMenu || !$mainMenu->active) {
+            return [];
+        }
+
+        if (!Validate::isLoadedObject($this->context->customer)) {
+            $this->context->customer = new Customer();
+        }
+
+        return $mainMenu->getWidgetVariables('displayTop', []);
+    }
+
     public function getMainMenuItems(): array
     {
         if ($this->mainMenuItems !== null) {
@@ -207,30 +246,32 @@ class DesignMenu extends Module
         }
 
         $this->mainMenuItems = [];
-        $mainMenu = Module::getInstanceByName('ps_mainmenu');
+        $tree = $this->getMainMenuTree();
 
-        if (!$mainMenu || !$mainMenu->active) {
-            return $this->mainMenuItems;
+        if ($tree) {
+            $this->flattenNodes($tree['children'], 0);
         }
 
-        if (!Validate::isLoadedObject($this->context->customer)) {
-            $this->context->customer = new Customer();
-        }
+        return $this->mainMenuItems;
+    }
 
-        $tree = $mainMenu->getWidgetVariables('displayTop', []);
-
-        foreach ($tree['children'] as $node) {
+    protected function flattenNodes(array $nodes, int $depth): void
+    {
+        foreach ($nodes as $node) {
             if (!$node['page_identifier']) {
                 continue;
             }
 
-            $this->mainMenuItems[] = [
-                'page_identifier' => $node['page_identifier'],
-                'label' => $node['label'],
-            ];
-        }
+            if (!isset($this->mainMenuItems[$node['page_identifier']])) {
+                $this->mainMenuItems[$node['page_identifier']] = [
+                    'page_identifier' => $node['page_identifier'],
+                    'label' => $node['label'],
+                    'depth' => $depth,
+                ];
+            }
 
-        return $this->mainMenuItems;
+            $this->flattenNodes($node['children'], $depth + 1);
+        }
     }
 
     public function getContent()
@@ -403,7 +444,7 @@ class DesignMenu extends Module
         foreach ($items as $item) {
             $values[] = [
                 'id' => $this->itemInputName($item['page_identifier']),
-                'name' => $item['label'],
+                'name' => str_repeat('— ', $item['depth']) . $item['label'],
                 'val' => 1,
             ];
         }
@@ -413,7 +454,7 @@ class DesignMenu extends Module
                 'type' => 'checkbox',
                 'label' => $this->trans('Menu entries', [], 'Modules.Designmenu.Admin'),
                 'name' => 'items',
-                'hint' => $this->trans('Entries come from the Main menu module. Tick the ones this mode shows; tick none to show all of them.', [], 'Modules.Designmenu.Admin'),
+                'hint' => $this->trans('Entries come from the Main menu module, at every level. Tick the ones this mode shows; tick none to show all of them. Hiding an entry also hides everything under it.', [], 'Modules.Designmenu.Admin'),
                 'values' => [
                     'query' => $values,
                     'id' => 'id',
@@ -613,9 +654,14 @@ class DesignMenu extends Module
                 $names[] = $labels[$identifier] ?? $identifier;
             }
 
-            $mode['items'] = $names
-                ? implode(', ', $names)
-                : $this->trans('All entries', [], 'Modules.Designmenu.Admin');
+            if (!$names) {
+                $mode['items'] = $this->trans('All entries', [], 'Modules.Designmenu.Admin');
+            } elseif (count($names) > 4) {
+                $mode['items'] = implode(', ', array_slice($names, 0, 4))
+                    . ' ' . $this->trans('and %d more', [count($names) - 4], 'Modules.Designmenu.Admin');
+            } else {
+                $mode['items'] = implode(', ', $names);
+            }
         }
         unset($mode);
 

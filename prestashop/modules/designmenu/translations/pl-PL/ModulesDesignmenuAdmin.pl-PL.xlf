@@ -42,9 +42,9 @@
         <source>All entries</source>
         <target>Wszystkie pozycje</target>
       </trans-unit>
-      <trans-unit id="11" resname="Entries come from the Main menu module. Tick the ones this mode shows; tick none to show all of them.">
-        <source>Entries come from the Main menu module. Tick the ones this mode shows; tick none to show all of them.</source>
-        <target>Pozycje pochodzą z modułu Menu główne. Zaznacz te, które pokazuje ten tryb; nie zaznaczaj żadnej, aby pokazać wszystkie.</target>
+      <trans-unit id="11" resname="Entries come from the Main menu module, at every level. Tick the ones this mode shows; tick none to show all of them. Hiding an entry also hides everything under it.">
+        <source>Entries come from the Main menu module, at every level. Tick the ones this mode shows; tick none to show all of them. Hiding an entry also hides everything under it.</source>
+        <target>Pozycje pochodzą z modułu Menu główne, z każdego poziomu. Zaznacz te, które pokazuje ten tryb; nie zaznaczaj żadnej, aby pokazać wszystkie. Ukrycie pozycji ukrywa też wszystko, co jest pod nią.</target>
       </trans-unit>
       <trans-unit id="12" resname="The Main menu module has no entries yet. Add them in its own configuration first.">
         <source>The Main menu module has no entries yet. Add them in its own configuration first.</source>
@@ -117,6 +117,10 @@
       <trans-unit id="29" resname="Displayed">
         <source>Displayed</source>
         <target>Wyświetlany</target>
+      </trans-unit>
+      <trans-unit id="30" resname="and %d more">
+        <source>and %d more</source>
+        <target>i jeszcze %d</target>
       </trans-unit>
     </body>
   </file>
