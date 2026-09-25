@@ -26,14 +26,6 @@
   <div class="user-info">
     {if $logged}
       <a
-        class="logout hidden-sm-down"
-        href="{$urls.actions.logout}"
-        rel="nofollow"
-      >
-        {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/account.svg"}
-        {l s='Sign out' d='Shop.Theme.Actions'}
-      </a>
-      <a
         class="account"
         href="{$urls.pages.my_account}"
         title="{l s='View my customer account' d='Shop.Theme.Customeraccount'}"

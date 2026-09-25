@@ -29,8 +29,7 @@
         <a rel="nofollow" aria-label="{l s='Shopping cart link containing %nbProducts% product(s)' sprintf=['%nbProducts%' => $cart.products_count] d='Shop.Theme.Checkout'}" href="{$cart_url}">
       {/if}
         {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/cart.svg"}
-        <span class="sr-only">{l s='Cart' d='Shop.Theme.Checkout'}</span>
-        <span class="cart-products-count">({$cart.products_count})</span>
+        <span class="sr-only">{l s='Cart' d='Shop.Theme.Checkout'} ({$cart.products_count})</span>
       {if $cart.products_count > 0}
         </a>
       {/if}
