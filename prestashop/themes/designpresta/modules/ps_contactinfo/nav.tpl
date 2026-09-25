@@ -24,19 +24,16 @@
  *}
 <div id="_desktop_contact_link">
   <div id="contact-link">
-    {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/support.svg"}
     {if $contact_infos.phone}
-      {l
-        s='Call us: [1]%phone%[/1]'
-        sprintf=[
-          '[1]' => "<a href='tel:{$contact_infos['phone']|replace:' ':''}'>",
-          '[/1]' => '</a>',
-          '%phone%' => $contact_infos.phone
-        ]
-        d='Shop.Theme.Global'
-      }
+      <a href="tel:{$contact_infos.phone|replace:' ':''}">
+        {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/support.svg"}
+        {l s='Call us: %phone%' sprintf=['%phone%' => $contact_infos.phone] d='Shop.Theme.Global'}
+      </a>
     {else}
-      <a href="{$urls.pages.contact}">{l s='Contact us' d='Shop.Theme.Global'}</a>
+      <a href="{$urls.pages.contact}">
+        {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/support.svg"}
+        {l s='Contact us' d='Shop.Theme.Global'}
+      </a>
     {/if}
   </div>
 </div>
