@@ -9,6 +9,9 @@ require_once __DIR__ . '/classes/DesignMenuMode.php';
 class DesignMenu extends Module
 {
     const ENABLED = 'DESIGNMENU_ENABLED';
+    const COOKIE_KEY = 'designmenu_mode';
+
+    protected $activeModes;
 
     public function __construct()
     {
@@ -33,6 +36,7 @@ class DesignMenu extends Module
     {
         return parent::install()
             && $this->installDb()
+            && $this->registerHook('displayDesignMenuModes')
             && Configuration::updateValue(self::ENABLED, 1);
     }
 
@@ -86,6 +90,97 @@ class DesignMenu extends Module
         $table = _DB_PREFIX_ . DesignMenuMode::$definition['table'];
 
         return Db::getInstance()->execute('DROP TABLE IF EXISTS `' . $table . '_shop`, `' . $table . '_lang`, `' . $table . '`');
+    }
+
+    public function hookDisplayDesignMenuModes()
+    {
+        if (!Configuration::get(self::ENABLED)) {
+            return '';
+        }
+
+        $modes = $this->getFrontModes();
+
+        if (!$modes) {
+            return '';
+        }
+
+        $this->context->smarty->assign([
+            'designmenu_modes' => $modes,
+            'designmenu_select_url' => $this->context->link->getModuleLink($this->name, 'select'),
+            'designmenu_back' => $_SERVER['REQUEST_URI'],
+        ]);
+
+        return $this->fetch('module:designmenu/views/templates/hook/modes.tpl');
+    }
+
+    public function selectMode($idMode): bool
+    {
+        $idMode = (int) $idMode;
+
+        if (!$idMode) {
+            unset($this->context->cookie->{self::COOKIE_KEY});
+            $this->context->cookie->write();
+
+            return true;
+        }
+
+        if (!$this->isSelectable($idMode)) {
+            return false;
+        }
+
+        $this->context->cookie->{self::COOKIE_KEY} = $idMode;
+        $this->context->cookie->write();
+
+        return true;
+    }
+
+    public function getSelectedModeId(): int
+    {
+        $idMode = (int) $this->context->cookie->{self::COOKIE_KEY};
+
+        return $idMode && $this->isSelectable($idMode) ? $idMode : 0;
+    }
+
+    protected function isSelectable(int $idMode): bool
+    {
+        foreach ($this->getActiveModes() as $mode) {
+            if ((int) $mode[DesignMenuMode::$definition['primary']] === $idMode) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    protected function getActiveModes(): array
+    {
+        if ($this->activeModes === null) {
+            $this->activeModes = DesignMenuMode::getModes(
+                (int) $this->context->language->id,
+                (int) $this->context->shop->id,
+                true
+            );
+        }
+
+        return $this->activeModes;
+    }
+
+    protected function getFrontModes(): array
+    {
+        $selectedId = $this->getSelectedModeId();
+        $modes = [];
+
+        foreach ($this->getActiveModes() as $mode) {
+            $idMode = (int) $mode[DesignMenuMode::$definition['primary']];
+
+            $modes[] = [
+                'id' => $idMode,
+                'label' => $mode['label'],
+                'active' => $idMode === $selectedId,
+            ];
+        }
+
+        return $modes;
     }
 
     public function getContent()

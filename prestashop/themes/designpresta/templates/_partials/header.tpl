@@ -58,6 +58,12 @@
             {hook h='displayNav2' mod='ps_shoppingcart'}
           </div>
         </div>
+        {capture name='designMenuModes'}{hook h='displayDesignMenuModes'}{/capture}
+        {if $smarty.capture.designMenuModes|trim}
+          <div class="header-nav-actions-3">
+            {$smarty.capture.designMenuModes nofilter}
+          </div>
+        {/if}
       </div>
       <div class="hidden-md-up text-sm-center mobile">
         <div class="float-xs-left" id="menu-icon">
