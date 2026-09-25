@@ -67,3 +67,48 @@
 #header .header-nav .blockcart a {
   color: var(--dp-color-neutral-black);
 }
+
+.header-nav-inner {
+  flex-wrap: wrap;
+  row-gap: var(--dp-space-32);
+}
+
+.header-nav-actions-3 {
+  flex-basis: 100%;
+}
+
+.designmenu-modes__list {
+  display: flex;
+  align-items: center;
+  gap: var(--dp-space-32);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.designmenu-modes__button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--dp-color-neutral-black);
+  font-family: var(--dp-font-family-base);
+  font-size: var(--dp-font-size-body);
+  font-weight: var(--dp-font-weight-regular);
+  line-height: var(--dp-line-height-small);
+  letter-spacing: var(--dp-letter-spacing-body);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.designmenu-modes__button--active {
+  font-weight: var(--dp-font-weight-bold);
+}
+
+#header .header-nav {
+  max-height: none;
+  border-bottom: none;
+}
+
+#header .header-nav .container .header-nav-inner{
+    border-bottom: 1px solid var(--dp-color-neutral-light);
+}
