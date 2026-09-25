@@ -27,48 +27,46 @@
 {block name='header_nav'}
   <nav class="header-nav" aria-label="{l s='Header' d='Shop.Theme.Global'}">
     <div class="container">
-      <div class="row">
-        <div class="header-nav-inner hidden-sm-down">
-          <div id="_desktop_logo">
-            {if $shop.logo_details}
-              {if $page.page_name == 'index'}
-                <h1>
-                  {renderLogo}
-                </h1>
-              {else}
+      <div class="header-nav-inner hidden-sm-down">
+        <div id="_desktop_logo">
+          {if $shop.logo_details}
+            {if $page.page_name == 'index'}
+              <h1>
                 {renderLogo}
-              {/if}
+              </h1>
+            {else}
+              {renderLogo}
             {/if}
+          {/if}
+        </div>
+        <div class="header-nav-actions">
+          <div class="header-nav-actions-1">
+            {hook h='displayNav1' mod='ps_contactinfo'}
+            <a class="header-nav-store-locator" href="{$urls.pages.stores|escape:'html':'UTF-8'}">
+              {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/pin.svg"}
+              {l s='Find a store' d='Shop.Theme.Global'}
+            </a>
           </div>
-          <div class="header-nav-actions">
-            <div class="header-nav-actions-1">
-              {hook h='displayNav1' mod='ps_contactinfo'}
-              <a class="header-nav-store-locator" href="{$urls.pages.stores|escape:'html':'UTF-8'}">
-                {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/pin.svg"}
-                {l s='Find a store' d='Shop.Theme.Global'}
+          <div class="header-nav-actions-2">
+            {if $customer.is_logged}
+              <a class="header-nav-wishlist" href="{$link->getModuleLink('blockwishlist', 'lists')|escape:'html':'UTF-8'}" rel="nofollow">
+                {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/heart.svg"}
+                <span class="sr-only">{l s='Wishlist' d='Shop.Theme.Global'}</span>
               </a>
-            </div>
-            <div class="header-nav-actions-2">
-              {if $customer.is_logged}
-                <a class="header-nav-wishlist" href="{$link->getModuleLink('blockwishlist', 'lists')|escape:'html':'UTF-8'}" rel="nofollow">
-                  {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/heart.svg"}
-                  <span class="sr-only">{l s='Wishlist' d='Shop.Theme.Global'}</span>
-                </a>
-              {/if}
-              {hook h='displayNav2' mod='ps_customersignin'}
-              {hook h='displayNav2' mod='ps_shoppingcart'}
-            </div>
+            {/if}
+            {hook h='displayNav2' mod='ps_customersignin'}
+            {hook h='displayNav2' mod='ps_shoppingcart'}
           </div>
         </div>
-        <div class="hidden-md-up text-sm-center mobile">
-          <div class="float-xs-left" id="menu-icon">
-            <i class="material-icons d-inline">&#xE5D2;</i>
-          </div>
-          <div class="float-xs-right" id="_mobile_cart"></div>
-          <div class="float-xs-right" id="_mobile_user_info"></div>
-          <div class="top-logo" id="_mobile_logo"></div>
-          <div class="clearfix"></div>
+      </div>
+      <div class="hidden-md-up text-sm-center mobile">
+        <div class="float-xs-left" id="menu-icon">
+          <i class="material-icons d-inline">&#xE5D2;</i>
         </div>
+        <div class="float-xs-right" id="_mobile_cart"></div>
+        <div class="float-xs-right" id="_mobile_user_info"></div>
+        <div class="top-logo" id="_mobile_logo"></div>
+        <div class="clearfix"></div>
       </div>
     </div>
   </nav>
