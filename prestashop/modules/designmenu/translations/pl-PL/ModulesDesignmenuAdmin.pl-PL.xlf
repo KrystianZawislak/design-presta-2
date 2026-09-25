@@ -6,9 +6,9 @@
         <source>Design Menu</source>
         <target>Menu nagłówka</target>
       </trans-unit>
-      <trans-unit id="2" resname="Header mode switcher: defines the modes shown in the header and where each of them leads.">
-        <source>Header mode switcher: defines the modes shown in the header and where each of them leads.</source>
-        <target>Przełącznik trybów w nagłówku: określa, jakie tryby widać w nagłówku i dokąd prowadzi każdy z nich.</target>
+      <trans-unit id="2" resname="Header mode switcher: defines the modes shown in the header and the links each of them shows.">
+        <source>Header mode switcher: defines the modes shown in the header and the links each of them shows.</source>
+        <target>Przełącznik trybów w nagłówku: określa, jakie tryby widać w nagłówku i jakie linki pokazuje każdy z nich.</target>
       </trans-unit>
       <trans-unit id="3" resname="Settings">
         <source>Settings</source>
@@ -50,9 +50,9 @@
         <source>Mode updated.</source>
         <target>Tryb zaktualizowany.</target>
       </trans-unit>
-      <trans-unit id="13" resname="Mode deleted.">
-        <source>Mode deleted.</source>
-        <target>Tryb usunięty.</target>
+      <trans-unit id="13" resname="Mode deleted, together with its links.">
+        <source>Mode deleted, together with its links.</source>
+        <target>Tryb usunięty razem z jego linkami.</target>
       </trans-unit>
       <trans-unit id="14" resname="This mode could not be saved.">
         <source>This mode could not be saved.</source>
@@ -66,87 +66,151 @@
         <source>This mode could not be deleted.</source>
         <target>Nie udało się usunąć tego trybu.</target>
       </trans-unit>
-      <trans-unit id="17" resname="Label">
-        <source>Label</source>
-        <target>Etykieta</target>
-      </trans-unit>
-      <trans-unit id="18" resname="Shown in the header switcher. Languages left empty reuse the default language.">
-        <source>Shown in the header switcher. Languages left empty reuse the default language.</source>
-        <target>Widoczna w przełączniku w nagłówku. Języki pozostawione puste przejmują wartość z języka domyślnego.</target>
-      </trans-unit>
-      <trans-unit id="19" resname="The label is required in the default language.">
-        <source>The label is required in the default language.</source>
-        <target>Etykieta w języku domyślnym jest wymagana.</target>
-      </trans-unit>
-      <trans-unit id="20" resname="The label contains characters that are not allowed (%s).">
-        <source>The label contains characters that are not allowed (%s).</source>
-        <target>Etykieta zawiera niedozwolone znaki (%s).</target>
-      </trans-unit>
-      <trans-unit id="21" resname="Links to">
-        <source>Links to</source>
-        <target>Prowadzi do</target>
-      </trans-unit>
-      <trans-unit id="22" resname="Only the field matching this choice is used; the other two are ignored.">
-        <source>Only the field matching this choice is used; the other two are ignored.</source>
-        <target>Używane jest tylko pole zgodne z tym wyborem; pozostałe dwa są ignorowane.</target>
-      </trans-unit>
-      <trans-unit id="23" resname="Choose what this mode links to.">
-        <source>Choose what this mode links to.</source>
-        <target>Wybierz, dokąd prowadzi ten tryb.</target>
-      </trans-unit>
-      <trans-unit id="24" resname="Category">
-        <source>Category</source>
-        <target>Kategoria</target>
-      </trans-unit>
-      <trans-unit id="25" resname="Choose a category for this mode.">
-        <source>Choose a category for this mode.</source>
-        <target>Wybierz kategorię dla tego trybu.</target>
-      </trans-unit>
-      <trans-unit id="26" resname="Missing category">
-        <source>Missing category</source>
-        <target>Brak kategorii</target>
-      </trans-unit>
-      <trans-unit id="27" resname="Content page">
-        <source>Content page</source>
-        <target>Strona treści</target>
-      </trans-unit>
-      <trans-unit id="28" resname="Choose a content page for this mode.">
-        <source>Choose a content page for this mode.</source>
-        <target>Wybierz stronę treści dla tego trybu.</target>
-      </trans-unit>
-      <trans-unit id="29" resname="Missing content page">
-        <source>Missing content page</source>
-        <target>Brak strony treści</target>
-      </trans-unit>
-      <trans-unit id="30" resname="Custom address">
-        <source>Custom address</source>
-        <target>Własny adres</target>
-      </trans-unit>
-      <trans-unit id="31" resname="Full address or one starting with a slash. Languages left empty reuse the default language.">
-        <source>Full address or one starting with a slash. Languages left empty reuse the default language.</source>
-        <target>Pełny adres albo taki zaczynający się od ukośnika. Języki pozostawione puste przejmują wartość z języka domyślnego.</target>
-      </trans-unit>
-      <trans-unit id="32" resname="Enter the address in the default language.">
-        <source>Enter the address in the default language.</source>
-        <target>Podaj adres w języku domyślnym.</target>
-      </trans-unit>
-      <trans-unit id="33" resname="The address is not a valid URL (%s).">
-        <source>The address is not a valid URL (%s).</source>
-        <target>Adres nie jest poprawnym URL-em (%s).</target>
-      </trans-unit>
-      <trans-unit id="34" resname="Position">
-        <source>Position</source>
-        <target>Pozycja</target>
-      </trans-unit>
-      <trans-unit id="35" resname="Modes are shown from the lowest number to the highest.">
+      <trans-unit id="17" resname="Modes are shown from the lowest number to the highest.">
         <source>Modes are shown from the lowest number to the highest.</source>
         <target>Tryby wyświetlają się od najniższego numeru do najwyższego.</target>
       </trans-unit>
-      <trans-unit id="36" resname="Displayed">
+      <trans-unit id="18" resname="Links">
+        <source>Links</source>
+        <target>Linki</target>
+      </trans-unit>
+      <trans-unit id="19" resname="Add a link">
+        <source>Add a link</source>
+        <target>Dodaj link</target>
+      </trans-unit>
+      <trans-unit id="20" resname="New link">
+        <source>New link</source>
+        <target>Nowy link</target>
+      </trans-unit>
+      <trans-unit id="21" resname="Edit link">
+        <source>Edit link</source>
+        <target>Edytuj link</target>
+      </trans-unit>
+      <trans-unit id="22" resname="Link saved.">
+        <source>Link saved.</source>
+        <target>Link zapisany.</target>
+      </trans-unit>
+      <trans-unit id="23" resname="Link updated.">
+        <source>Link updated.</source>
+        <target>Link zaktualizowany.</target>
+      </trans-unit>
+      <trans-unit id="24" resname="Link deleted.">
+        <source>Link deleted.</source>
+        <target>Link usunięty.</target>
+      </trans-unit>
+      <trans-unit id="25" resname="This link could not be saved.">
+        <source>This link could not be saved.</source>
+        <target>Nie udało się zapisać tego linku.</target>
+      </trans-unit>
+      <trans-unit id="26" resname="This link could not be updated.">
+        <source>This link could not be updated.</source>
+        <target>Nie udało się zmienić tego linku.</target>
+      </trans-unit>
+      <trans-unit id="27" resname="This link could not be deleted.">
+        <source>This link could not be deleted.</source>
+        <target>Nie udało się usunąć tego linku.</target>
+      </trans-unit>
+      <trans-unit id="28" resname="Links are shown from the lowest number to the highest, within their mode.">
+        <source>Links are shown from the lowest number to the highest, within their mode.</source>
+        <target>Linki wyświetlają się od najniższego numeru do najwyższego, w obrębie swojego trybu.</target>
+      </trans-unit>
+      <trans-unit id="29" resname="Mode">
+        <source>Mode</source>
+        <target>Tryb</target>
+      </trans-unit>
+      <trans-unit id="30" resname="Neutral (no mode selected)">
+        <source>Neutral (no mode selected)</source>
+        <target>Neutralny (żaden tryb nie wybrany)</target>
+      </trans-unit>
+      <trans-unit id="31" resname="The link is shown only while this mode is selected in the header.">
+        <source>The link is shown only while this mode is selected in the header.</source>
+        <target>Link pokazuje się tylko wtedy, gdy ten tryb jest wybrany w nagłówku.</target>
+      </trans-unit>
+      <trans-unit id="32" resname="Choose a mode for this link.">
+        <source>Choose a mode for this link.</source>
+        <target>Wybierz tryb dla tego linku.</target>
+      </trans-unit>
+      <trans-unit id="33" resname="Missing mode">
+        <source>Missing mode</source>
+        <target>Brak trybu</target>
+      </trans-unit>
+      <trans-unit id="34" resname="Label">
+        <source>Label</source>
+        <target>Etykieta</target>
+      </trans-unit>
+      <trans-unit id="35" resname="Languages left empty reuse the default language.">
+        <source>Languages left empty reuse the default language.</source>
+        <target>Języki pozostawione puste przejmują wartość z języka domyślnego.</target>
+      </trans-unit>
+      <trans-unit id="36" resname="The label is required in the default language.">
+        <source>The label is required in the default language.</source>
+        <target>Etykieta w języku domyślnym jest wymagana.</target>
+      </trans-unit>
+      <trans-unit id="37" resname="The label contains characters that are not allowed (%s).">
+        <source>The label contains characters that are not allowed (%s).</source>
+        <target>Etykieta zawiera niedozwolone znaki (%s).</target>
+      </trans-unit>
+      <trans-unit id="38" resname="Links to">
+        <source>Links to</source>
+        <target>Prowadzi do</target>
+      </trans-unit>
+      <trans-unit id="39" resname="Only the field matching this choice is used; the other two are ignored.">
+        <source>Only the field matching this choice is used; the other two are ignored.</source>
+        <target>Używane jest tylko pole zgodne z tym wyborem; pozostałe dwa są ignorowane.</target>
+      </trans-unit>
+      <trans-unit id="40" resname="Choose what this links to.">
+        <source>Choose what this links to.</source>
+        <target>Wybierz, dokąd to prowadzi.</target>
+      </trans-unit>
+      <trans-unit id="41" resname="Category">
+        <source>Category</source>
+        <target>Kategoria</target>
+      </trans-unit>
+      <trans-unit id="42" resname="Choose a category.">
+        <source>Choose a category.</source>
+        <target>Wybierz kategorię.</target>
+      </trans-unit>
+      <trans-unit id="43" resname="Missing category">
+        <source>Missing category</source>
+        <target>Brak kategorii</target>
+      </trans-unit>
+      <trans-unit id="44" resname="Content page">
+        <source>Content page</source>
+        <target>Strona treści</target>
+      </trans-unit>
+      <trans-unit id="45" resname="Choose a content page.">
+        <source>Choose a content page.</source>
+        <target>Wybierz stronę treści.</target>
+      </trans-unit>
+      <trans-unit id="46" resname="Missing content page">
+        <source>Missing content page</source>
+        <target>Brak strony treści</target>
+      </trans-unit>
+      <trans-unit id="47" resname="Custom address">
+        <source>Custom address</source>
+        <target>Własny adres</target>
+      </trans-unit>
+      <trans-unit id="48" resname="Full address or one starting with a slash. Languages left empty reuse the default language.">
+        <source>Full address or one starting with a slash. Languages left empty reuse the default language.</source>
+        <target>Pełny adres albo taki zaczynający się od ukośnika. Języki pozostawione puste przejmują wartość z języka domyślnego.</target>
+      </trans-unit>
+      <trans-unit id="49" resname="Enter the address in the default language.">
+        <source>Enter the address in the default language.</source>
+        <target>Podaj adres w języku domyślnym.</target>
+      </trans-unit>
+      <trans-unit id="50" resname="The address is not a valid URL (%s).">
+        <source>The address is not a valid URL (%s).</source>
+        <target>Adres nie jest poprawnym URL-em (%s).</target>
+      </trans-unit>
+      <trans-unit id="51" resname="Position">
+        <source>Position</source>
+        <target>Pozycja</target>
+      </trans-unit>
+      <trans-unit id="52" resname="Displayed">
         <source>Displayed</source>
         <target>Wyświetlany</target>
       </trans-unit>
-      <trans-unit id="37" resname="-- none --">
+      <trans-unit id="53" resname="-- none --">
         <source>-- none --</source>
         <target>-- brak --</target>
       </trans-unit>

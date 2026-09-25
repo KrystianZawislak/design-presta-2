@@ -6,11 +6,7 @@ if (!defined('_PS_VERSION_')) {
 
 class DesignMenuMode extends ObjectModel
 {
-    const TARGET_CATEGORY = 'category';
-    const TARGET_CMS = 'cms';
-    const TARGET_URL = 'url';
-
-    public $target_type = self::TARGET_CATEGORY;
+    public $target_type = DesignMenuTarget::CATEGORY;
     public $id_category = 0;
     public $id_cms = 0;
     public $position = 0;
@@ -33,11 +29,6 @@ class DesignMenuMode extends ObjectModel
         ],
     ];
 
-    public static function getTargetTypes(): array
-    {
-        return [self::TARGET_CATEGORY, self::TARGET_CMS, self::TARGET_URL];
-    }
-
     public static function getNextPosition(): int
     {
         return 1 + (int) Db::getInstance()->getValue(
@@ -47,35 +38,26 @@ class DesignMenuMode extends ObjectModel
 
     public static function getModes(int $idLang, int $idShop, bool $activeOnly): array
     {
+        $table = self::$definition['table'];
+        $primary = self::$definition['primary'];
+
         $sql = new DbQuery();
         $sql->select('m.*, ml.`label`, ml.`custom_url`');
-        $sql->from(self::$definition['table'], 'm');
-        $sql->innerJoin(self::$definition['table'] . '_lang', 'ml', 'ml.`' . self::$definition['primary'] . '` = m.`' . self::$definition['primary'] . '` AND ml.`id_lang` = ' . (int) $idLang);
-        $sql->innerJoin(self::$definition['table'] . '_shop', 'ms', 'ms.`' . self::$definition['primary'] . '` = m.`' . self::$definition['primary'] . '` AND ms.`id_shop` = ' . (int) $idShop);
+        $sql->from($table, 'm');
+        $sql->innerJoin($table . '_lang', 'ml', 'ml.`' . $primary . '` = m.`' . $primary . '` AND ml.`id_lang` = ' . $idLang);
+        $sql->innerJoin($table . '_shop', 'ms', 'ms.`' . $primary . '` = m.`' . $primary . '` AND ms.`id_shop` = ' . $idShop);
+
         if ($activeOnly) {
             $sql->where('m.`active` = 1');
         }
-        $sql->orderBy('m.`position` ASC, m.`' . self::$definition['primary'] . '` ASC');
+
+        $sql->orderBy('m.`position` ASC, m.`' . $primary . '` ASC');
 
         return Db::getInstance()->executeS($sql) ?: [];
     }
 
-    public function getTargetUrl(Link $link, int $idLang): string
+    public function delete()
     {
-        if ($this->target_type === self::TARGET_CATEGORY && $this->id_category) {
-            return $link->getCategoryLink((int) $this->id_category, null, $idLang);
-        }
-
-        if ($this->target_type === self::TARGET_CMS && $this->id_cms) {
-            return $link->getCMSLink((int) $this->id_cms, null, null, $idLang);
-        }
-
-        if ($this->target_type === self::TARGET_URL) {
-            $url = is_array($this->custom_url) ? ($this->custom_url[$idLang] ?? '') : $this->custom_url;
-
-            return (string) $url;
-        }
-
-        return '';
+        return DesignMenuLink::deleteByMode((int) $this->id) && parent::delete();
     }
 }
