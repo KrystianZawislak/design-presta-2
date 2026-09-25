@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="modules/designmenu/designmenu.php" source-language="en-US" target-language="pl-PL" datatype="plaintext">
+    <body>
+      <trans-unit id="1" resname="Design Menu">
+        <source>Design Menu</source>
+        <target>Menu nagłówka</target>
+      </trans-unit>
+      <trans-unit id="2" resname="Header mode switcher: defines the modes shown in the header and where each of them leads.">
+        <source>Header mode switcher: defines the modes shown in the header and where each of them leads.</source>
+        <target>Przełącznik trybów w nagłówku: określa, jakie tryby widać w nagłówku i dokąd prowadzi każdy z nich.</target>
+      </trans-unit>
+      <trans-unit id="3" resname="Settings">
+        <source>Settings</source>
+        <target>Ustawienia</target>
+      </trans-unit>
+      <trans-unit id="4" resname="Settings saved.">
+        <source>Settings saved.</source>
+        <target>Ustawienia zapisane.</target>
+      </trans-unit>
+      <trans-unit id="5" resname="Show the mode switcher">
+        <source>Show the mode switcher</source>
+        <target>Pokaż przełącznik trybów</target>
+      </trans-unit>
+      <trans-unit id="6" resname="Turn this off to hide the whole switcher row without deleting the modes.">
+        <source>Turn this off to hide the whole switcher row without deleting the modes.</source>
+        <target>Wyłącz, aby ukryć cały rząd z przełącznikiem bez usuwania trybów.</target>
+      </trans-unit>
+      <trans-unit id="7" resname="Modes">
+        <source>Modes</source>
+        <target>Tryby</target>
+      </trans-unit>
+      <trans-unit id="8" resname="Add a mode">
+        <source>Add a mode</source>
+        <target>Dodaj tryb</target>
+      </trans-unit>
+      <trans-unit id="9" resname="New mode">
+        <source>New mode</source>
+        <target>Nowy tryb</target>
+      </trans-unit>
+      <trans-unit id="10" resname="Edit mode">
+        <source>Edit mode</source>
+        <target>Edytuj tryb</target>
+      </trans-unit>
+      <trans-unit id="11" resname="Mode saved.">
+        <source>Mode saved.</source>
+        <target>Tryb zapisany.</target>
+      </trans-unit>
+      <trans-unit id="12" resname="Mode updated.">
+        <source>Mode updated.</source>
+        <target>Tryb zaktualizowany.</target>
+      </trans-unit>
+      <trans-unit id="13" resname="Mode deleted.">
+        <source>Mode deleted.</source>
+        <target>Tryb usunięty.</target>
+      </trans-unit>
+      <trans-unit id="14" resname="This mode could not be saved.">
+        <source>This mode could not be saved.</source>
+        <target>Nie udało się zapisać tego trybu.</target>
+      </trans-unit>
+      <trans-unit id="15" resname="This mode could not be updated.">
+        <source>This mode could not be updated.</source>
+        <target>Nie udało się zmienić tego trybu.</target>
+      </trans-unit>
+      <trans-unit id="16" resname="This mode could not be deleted.">
+        <source>This mode could not be deleted.</source>
+        <target>Nie udało się usunąć tego trybu.</target>
+      </trans-unit>
+      <trans-unit id="17" resname="Label">
+        <source>Label</source>
+        <target>Etykieta</target>
+      </trans-unit>
+      <trans-unit id="18" resname="Shown in the header switcher. Languages left empty reuse the default language.">
+        <source>Shown in the header switcher. Languages left empty reuse the default language.</source>
+        <target>Widoczna w przełączniku w nagłówku. Języki pozostawione puste przejmują wartość z języka domyślnego.</target>
+      </trans-unit>
+      <trans-unit id="19" resname="The label is required in the default language.">
+        <source>The label is required in the default language.</source>
+        <target>Etykieta w języku domyślnym jest wymagana.</target>
+      </trans-unit>
+      <trans-unit id="20" resname="The label contains characters that are not allowed (%s).">
+        <source>The label contains characters that are not allowed (%s).</source>
+        <target>Etykieta zawiera niedozwolone znaki (%s).</target>
+      </trans-unit>
+      <trans-unit id="21" resname="Links to">
+        <source>Links to</source>
+        <target>Prowadzi do</target>
+      </trans-unit>
+      <trans-unit id="22" resname="Only the field matching this choice is used; the other two are ignored.">
+        <source>Only the field matching this choice is used; the other two are ignored.</source>
+        <target>Używane jest tylko pole zgodne z tym wyborem; pozostałe dwa są ignorowane.</target>
+      </trans-unit>
+      <trans-unit id="23" resname="Choose what this mode links to.">
+        <source>Choose what this mode links to.</source>
+        <target>Wybierz, dokąd prowadzi ten tryb.</target>
+      </trans-unit>
+      <trans-unit id="24" resname="Category">
+        <source>Category</source>
+        <target>Kategoria</target>
+      </trans-unit>
+      <trans-unit id="25" resname="Choose a category for this mode.">
+        <source>Choose a category for this mode.</source>
+        <target>Wybierz kategorię dla tego trybu.</target>
+      </trans-unit>
+      <trans-unit id="26" resname="Missing category">
+        <source>Missing category</source>
+        <target>Brak kategorii</target>
+      </trans-unit>
+      <trans-unit id="27" resname="Content page">
+        <source>Content page</source>
+        <target>Strona treści</target>
+      </trans-unit>
+      <trans-unit id="28" resname="Choose a content page for this mode.">
+        <source>Choose a content page for this mode.</source>
+        <target>Wybierz stronę treści dla tego trybu.</target>
+      </trans-unit>
+      <trans-unit id="29" resname="Missing content page">
+        <source>Missing content page</source>
+        <target>Brak strony treści</target>
+      </trans-unit>
+      <trans-unit id="30" resname="Custom address">
+        <source>Custom address</source>
+        <target>Własny adres</target>
+      </trans-unit>
+      <trans-unit id="31" resname="Full address or one starting with a slash. Languages left empty reuse the default language.">
+        <source>Full address or one starting with a slash. Languages left empty reuse the default language.</source>
+        <target>Pełny adres albo taki zaczynający się od ukośnika. Języki pozostawione puste przejmują wartość z języka domyślnego.</target>
+      </trans-unit>
+      <trans-unit id="32" resname="Enter the address in the default language.">
+        <source>Enter the address in the default language.</source>
+        <target>Podaj adres w języku domyślnym.</target>
+      </trans-unit>
+      <trans-unit id="33" resname="The address is not a valid URL (%s).">
+        <source>The address is not a valid URL (%s).</source>
+        <target>Adres nie jest poprawnym URL-em (%s).</target>
+      </trans-unit>
+      <trans-unit id="34" resname="Position">
+        <source>Position</source>
+        <target>Pozycja</target>
+      </trans-unit>
+      <trans-unit id="35" resname="Modes are shown from the lowest number to the highest.">
+        <source>Modes are shown from the lowest number to the highest.</source>
+        <target>Tryby wyświetlają się od najniższego numeru do najwyższego.</target>
+      </trans-unit>
+      <trans-unit id="36" resname="Displayed">
+        <source>Displayed</source>
+        <target>Wyświetlany</target>
+      </trans-unit>
+      <trans-unit id="37" resname="-- none --">
+        <source>-- none --</source>
+        <target>-- brak --</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
