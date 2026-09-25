@@ -1,38 +1,35 @@
 .header-nav-inner {
   display: flex;
-  justify-content: space-between;   
-  align-items: center;           
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Grupa "actions": dwie podgrupy odległe o 200px */
 .header-nav-actions {
   display: flex;
-  align-items: center;              /* moja propozycja — Figma tego nie ustawiła wprost */
-  gap: 200px;                       /* potwierdzone w Figmie: Action Items */
+  align-items: center;
+  gap: 200px;
 }
 
-/* Kontakt + Znajdź sklep */
 .header-nav-actions-1 {
   display: flex;
-  align-items: center;              /* moja propozycja — jw. */
-  gap: 32px;                        /* potwierdzone w Figmie: Customer Support Items */
+  align-items: center;
+  gap: 32px;
 }
 
-/* Ulubione + Konto + Koszyk */
 .header-nav-actions-2 {
   display: flex;
-  align-items: center;             
-  gap: 12px;                        /* potwierdzone w Figmie: Your Account Items */
+  align-items: center;
+  gap: 12px;
 }
 
 #_desktop_contact_link #contact-link {
   display: flex;
-  align-items: center;             
+  align-items: center;
   gap: 4px;
 }
 
 .header-nav-store-locator {
   display: flex;
-  align-items: center;              
+  align-items: center;
   gap: 4px;
 }
