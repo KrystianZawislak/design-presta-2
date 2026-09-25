@@ -15,6 +15,10 @@ assets:
         path: assets/css/tokens.css
         media: all
         priority: 300
+      - id: designpresta-overrides
+        path: assets/css/overrides.css
+        media: all
+        priority: 305
       - id: designpresta-header
         path: assets/css/header.css
         media: all

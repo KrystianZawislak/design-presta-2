@@ -1,7 +1,2 @@
-#footer a:focus-visible,
-#footer button:focus-visible,
-#footer input:focus-visible,
-#footer select:focus-visible {
-  outline: var(--dp-focus-ring-width) solid currentColor;
-  outline-offset: var(--dp-focus-ring-offset);
+#footer {
 }

@@ -1,7 +1,2 @@
-#header a:focus-visible,
-#header button:focus-visible,
-#header input:focus-visible,
-#header select:focus-visible {
-  outline: var(--dp-focus-ring-width) solid currentColor;
-  outline-offset: var(--dp-focus-ring-offset);
+#header {
 }
