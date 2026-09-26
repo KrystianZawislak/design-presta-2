@@ -28,6 +28,10 @@
     <input type="hidden" name="controller" value="search">
     <i class="search" aria-hidden="true">{include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/search.svg"}</i>
     <input type="text" name="s" value="{$search_string}" placeholder="{l s='Search products, articles, faq, ...' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
+    <span class="search-widgets__extra" aria-hidden="true">
+      <i class="microphone">{include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/microphone.svg"}</i>
+      <i class="camera">{include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/camera.svg"}</i>
+    </span>
     <i class="clear" aria-hidden="true">{include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/close.svg"}</i>
   </form>
 </div>
