@@ -148,3 +148,25 @@
 #header .header-nav .container{
     padding-top: 32px;
 }
+
+#header .header-top #search_widget form {
+  display: flex;
+  align-items: center;
+  gap: var(--dp-space-8);
+   padding: calc(var(--dp-space-8) - 1px) calc(var(--dp-space-12) - 1px);
+  border: 1px solid var(--dp-color-neutral-dark);
+  border-radius: 0;
+}
+
+#header .header-top #search_widget form i {
+  position: static;
+  display: flex;
+  padding: 0;
+}
+
+#header .header-top #search_widget form input[type="text"] {
+  flex: 1;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+}
