@@ -201,3 +201,8 @@
   width: 1px;
   background: var(--dp-color-neutral-light);
 }
+
+#header .header-top #search_widget form i {
+  color: var(--dp-color-neutral-black);
+}
+
