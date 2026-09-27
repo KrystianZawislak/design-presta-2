@@ -55,6 +55,7 @@
   --dp-gradient-comet: linear-gradient(221.8deg, #DB2796 0%, #FFD9F0 100%);
   --dp-gradient-twilight: linear-gradient(221.8deg, #003DFF 0%, #CAD1FF 100%);
 
+  --dp-space-2: 2px;
   --dp-space-4: 4px;
   --dp-space-8: 8px;
   --dp-space-12: 12px;
@@ -64,6 +65,7 @@
   --dp-space-40: 40px;
   --dp-space-48: 48px;
   --dp-space-64: 64px;
+  --dp-space-100: 100px;
   --dp-space-200: 200px;
 
   --dp-grid-desktop-width: 1440px;

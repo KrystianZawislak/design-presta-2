@@ -65,14 +65,31 @@
           </div>
         {/if}
       </div>
-      <div class="hidden-md-up text-sm-center mobile">
-        <div class="float-xs-left" id="menu-icon">
-          <i class="material-icons d-inline">&#xE5D2;</i>
+      <div class="header-nav-mobile hidden-md-up">
+        <div class="header-nav-mobile__logo" id="_mobile_logo">
+          {renderLogo}
         </div>
-        <div class="float-xs-right" id="_mobile_cart"></div>
-        <div class="float-xs-right" id="_mobile_user_info"></div>
-        <div class="top-logo" id="_mobile_logo"></div>
-        <div class="clearfix"></div>
+        <div class="header-nav-mobile__actions">
+          <a class="header-nav-mobile__action" href="{$urls.pages.stores|escape:'html':'UTF-8'}">
+            {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/pin.svg"}
+            <span>{l s='Stores' d='Shop.Theme.Global'}</span>
+          </a>
+          {if $customer.is_logged}
+            <a class="header-nav-mobile__action" href="{$urls.pages.my_account|escape:'html':'UTF-8'}" rel="nofollow">
+              {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/account.svg"}
+              <span>{l s='Account' d='Shop.Theme.Customeraccount'}</span>
+            </a>
+          {else}
+            <a class="header-nav-mobile__action" href="{$urls.pages.authentication|escape:'html':'UTF-8'}?back={$urls.current_url|urlencode}" rel="nofollow">
+              {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/account.svg"}
+              <span>{l s='Account' d='Shop.Theme.Customeraccount'}</span>
+            </a>
+          {/if}
+          <a class="header-nav-mobile__action" href="{$urls.pages.cart|escape:'html':'UTF-8'}" rel="nofollow">
+            {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/cart.svg"}
+            <span>{l s='Cart' d='Shop.Theme.Checkout'}</span>
+          </a>
+        </div>
       </div>
     </div>
   </nav>
@@ -83,6 +100,11 @@
     <div class="container">
        <div class="row">
         <div class="header-top-right col-md-12 col-sm-12 position-static">
+          <div class="header-top-mobile-trigger hidden-md-up" id="menu-icon">
+            {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/menu.svg"}
+            <span>{l s='Menu' d='Shop.Theme.Global'}</span>
+          </div>
+          <span class="header-top-mobile-separator hidden-md-up" aria-hidden="true"></span>
           {hook h='displayTop'}
         </div>
       </div>
