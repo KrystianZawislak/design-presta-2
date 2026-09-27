@@ -206,3 +206,19 @@
   color: var(--dp-color-neutral-black);
 }
 
+#header a:focus,
+#header button:focus,
+#header .btn:focus {
+  outline: none;
+}
+
+#header a:focus-visible,
+#header button:focus-visible,
+#header .btn:focus-visible {
+  outline: 2px solid var(--dp-color-neutral-black);
+  outline-offset: 2px;
+}
+
+#header .header-top #search_widget form input[type="text"]:focus {
+  outline: none;
+}
