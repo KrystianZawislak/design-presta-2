@@ -162,11 +162,6 @@
   border-radius: 0;
 }
 
-#header .header-top #search_widget form:focus-within {
-  outline: 2px solid var(--dp-color-neutral-black);
-  outline-offset: 2px;
-}
-
 #header .header-top #search_widget form i:not(.clear) {
   position: static;
   display: flex;
