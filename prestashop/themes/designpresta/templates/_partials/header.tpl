@@ -66,8 +66,14 @@
         {/if}
       </div>
       <div class="header-nav-mobile hidden-md-up">
-        <div class="header-nav-mobile__logo" id="_mobile_logo">
-          {renderLogo}
+        <div class="header-nav-mobile__logo">
+          {if $page.page_name == 'index'}
+            <h1>
+              {renderLogo}
+            </h1>
+          {else}
+            {renderLogo}
+          {/if}
         </div>
         <div class="header-nav-mobile__actions">
           <a class="header-nav-mobile__action" href="{$urls.pages.stores|escape:'html':'UTF-8'}">
@@ -85,7 +91,7 @@
               <span>{l s='Account' d='Shop.Theme.Customeraccount'}</span>
             </a>
           {/if}
-          <a class="header-nav-mobile__action" href="{$urls.pages.cart|escape:'html':'UTF-8'}" rel="nofollow">
+          <a class="header-nav-mobile__action" href="{$link->getPageLink('cart', null, null, ['action' => 'show'])|escape:'html':'UTF-8'}" rel="nofollow">
             {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/cart.svg"}
             <span>{l s='Cart' d='Shop.Theme.Checkout'}</span>
           </a>
