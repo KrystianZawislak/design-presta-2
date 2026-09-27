@@ -6,7 +6,7 @@
   row-gap: var(--dp-space-32);
 }
 
-#header #_desktop_logo h1 {
+#header .header-nav h1 {
   margin: 0;
   font-size: inherit;
   line-height: inherit;
