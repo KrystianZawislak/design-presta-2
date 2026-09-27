@@ -231,7 +231,7 @@
   border-bottom: 1px solid var(--dp-color-neutral-light);
 }
 
-.header-nav-mobile__logo img {
+#header .header-nav-mobile__logo img {
   width: auto;
   height: 24px;
 }
@@ -319,7 +319,8 @@
     display: none;
   }
 
-  #header .header-nav-mobile{
-    padding-inline: 0;
+  #header .header-nav-mobile {
+    margin-inline: calc(-1 * var(--dp-grid-mobile-margin));
+    padding-inline: var(--dp-grid-mobile-margin);
   }
 }
