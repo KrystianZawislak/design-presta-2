@@ -27,3 +27,9 @@ assets:
         path: assets/css/footer.css
         media: all
         priority: 320
+  js:
+    all:
+      - id: designpresta-header
+        path: assets/js/header.js
+        position: bottom
+        priority: 300

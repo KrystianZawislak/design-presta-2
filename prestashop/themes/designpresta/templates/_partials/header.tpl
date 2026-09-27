@@ -106,20 +106,12 @@
     <div class="container">
        <div class="row">
         <div class="header-top-right col-md-12 col-sm-12 position-static">
-          <div class="header-top-mobile-trigger hidden-md-up" id="menu-icon">
+          <button type="button" class="header-top-mobile-trigger hidden-md-up" data-dp-menu-trigger aria-controls="dp-menu" aria-expanded="false">
             {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/menu.svg"}
             <span>{l s='Menu' d='Shop.Theme.Global'}</span>
-          </div>
+          </button>
           <span class="header-top-mobile-separator hidden-md-up" aria-hidden="true"></span>
           {hook h='displayTop'}
-        </div>
-      </div>
-      <div id="mobile_top_menu_wrapper" class="row hidden-md-up" style="display:none;">
-        <div class="js-top-menu mobile" id="_mobile_top_menu"></div>
-        <div class="js-top-menu-bottom">
-          <div id="_mobile_currency_selector"></div>
-          <div id="_mobile_language_selector"></div>
-          <div id="_mobile_contact_link"></div>
         </div>
       </div>
     </div>
