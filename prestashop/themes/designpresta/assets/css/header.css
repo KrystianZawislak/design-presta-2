@@ -279,7 +279,7 @@
   background: var(--dp-color-neutral-light);
 }
 
-@media (max-width: 991px) {
+@media (max-width: 767px) {
   #header .header-top {
     padding-top: 0;
     padding-bottom: 0;
