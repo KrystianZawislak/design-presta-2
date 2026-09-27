@@ -5,8 +5,16 @@
     max-width: var(--dp-grid-desktop-width);
 }
 
+.header-nav-actions{
+    gap: var(--dp-space-100);
+}
+
 @media (min-width: 992px){
     .container{
         padding-inline: var(--dp-grid-desktop-margin);
+    }
+
+    .header-nav-actions{
+        gap: var(--dp-space-200);
     }
 }
