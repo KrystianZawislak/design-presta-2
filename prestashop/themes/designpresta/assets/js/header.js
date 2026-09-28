@@ -45,12 +45,15 @@
       }
     }
 
-    function close() {
+    function close(returnFocus) {
       drawer.hidden = true;
       document.body.classList.remove('dp-menu-is-open');
       trigger.setAttribute('aria-expanded', 'false');
       showView(rootView, false);
-      trigger.focus();
+
+      if (returnFocus) {
+        trigger.focus();
+      }
     }
 
     function trapFocus(event) {
@@ -76,30 +79,33 @@
 
     trigger.addEventListener('click', function () {
       if (isOpen()) {
-        close();
+        close(true);
       } else {
         open();
       }
     });
 
     drawer.addEventListener('click', function (event) {
-      var closer = event.target.closest('[data-dp-menu-close]');
+      if (event.target.closest('[data-dp-menu-close]')) {
+        close(true);
 
-      if (closer) {
-        close();
         return;
       }
 
       var opener = event.target.closest('[data-dp-menu-open]');
 
-      if (!opener) {
+      if (opener) {
+        var target = document.getElementById(opener.getAttribute('data-dp-menu-open'));
+
+        if (target) {
+          showView(target, true);
+        }
+
         return;
       }
 
-      var target = document.getElementById(opener.getAttribute('data-dp-menu-open'));
-
-      if (target) {
-        showView(target, true);
+      if (event.target.closest('a[href]')) {
+        close(false);
       }
     });
 
@@ -109,7 +115,8 @@
       }
 
       if (event.key === 'Escape') {
-        close();
+        close(true);
+
         return;
       }
 
@@ -120,7 +127,7 @@
 
     window.addEventListener('resize', function () {
       if (isOpen() && !trigger.offsetParent) {
-        close();
+        close(false);
       }
     });
   }
