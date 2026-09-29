@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="themes/designpresta" source-language="en" target-language="pl" datatype="plaintext">
+    <body>
+      <trans-unit id="08bd40c7543007ad06e4fce31618f6ec" approved="yes">
+        <source>Account</source>
+        <target state="final">Konto</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

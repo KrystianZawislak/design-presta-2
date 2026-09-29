@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="themes/designpresta" source-language="en" target-language="pl" datatype="plaintext">
+    <body>
+      <trans-unit id="bf50d5e661106d0abe925af3c2e6f7e7" approved="yes">
+        <source>Header</source>
+        <target state="final">Nagłówek</target>
+      </trans-unit>
+      <trans-unit id="4d7a3b1c46041dc73dec5764f3a6b63a" approved="yes">
+        <source>Main menu</source>
+        <target state="final">Menu główne</target>
+      </trans-unit>
+      <trans-unit id="b61541208db7fa7dba42c85224405911" approved="yes">
+        <source>Menu</source>
+        <target state="final">Menu</target>
+      </trans-unit>
+      <trans-unit id="1d66769fe7f641de0c633976e5f46cb5" approved="yes">
+        <source>Find a store</source>
+        <target state="final">Znajdź sklep</target>
+      </trans-unit>
+      <trans-unit id="821b8ee6937cec96c30fdafbfe836d68" approved="yes">
+        <source>Stores</source>
+        <target state="final">Sklepy</target>
+      </trans-unit>
+      <trans-unit id="641254d77e7a473aa5910574f3f9453c" approved="yes">
+        <source>Wishlist</source>
+        <target state="final">Lista życzeń</target>
+      </trans-unit>
+      <trans-unit id="6a26f548831e6a8c26bfbbd9f6ec61e0" approved="yes">
+        <source>Help</source>
+        <target state="final">Pomoc</target>
+      </trans-unit>
+      <trans-unit id="ffb7e666a70151215b4c55c6268d7d72" approved="yes">
+        <source>Newsletter</source>
+        <target state="final">Newsletter</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
