@@ -14,16 +14,18 @@
     var mobile = window.matchMedia('(max-width: 767px)');
 
     instance._resizeMenu = function () {
-      var widget = $widget[0].getBoundingClientRect();
-      var right = mobile.matches ? $('.header-top')[0].getBoundingClientRect().right : widget.right;
+      var $anchor = mobile.matches ? $('.header-top') : $widget;
+      var anchor = $anchor[0].getBoundingClientRect();
+      var separator = mobile.matches ? $('.header-top-mobile-separator')[0] : null;
+      var left = separator ? separator.getBoundingClientRect().right : anchor.left;
 
       this.options.position = {
         my: 'left top',
-        at: 'left bottom',
-        of: $widget,
+        at: 'left+' + Math.round(left - anchor.left) + ' bottom',
+        of: $anchor,
         collision: 'none'
       };
-      this.menu.element.outerWidth(right - widget.left);
+      this.menu.element.outerWidth(anchor.right - left);
     };
   });
 })(window.jQuery);
