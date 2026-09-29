@@ -150,6 +150,15 @@
   letter-spacing: var(--dp-letter-spacing-small);
 }
 
+#header .top-menu a[data-depth="0"]:hover,
+#header .top-menu a[data-depth="0"]:focus,
+#header .top-menu a[data-depth="0"]:active,
+#header .category a:hover,
+#header .category a:focus,
+#header .category a:active {
+  color: var(--dp-color-neutral-black);
+}
+
 #header .header-top #search_widget {
   flex: 0 1 348px;
   min-width: 0;
