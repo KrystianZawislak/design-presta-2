@@ -220,6 +220,20 @@
   color: var(--dp-color-neutral-black);
 }
 
+.ui-autocomplete.searchbar-autocomplete {
+  border-top: 1px solid var(--dp-color-neutral-dark);
+  border-right: 1px solid var(--dp-color-neutral-dark);
+  border-left: 1px solid var(--dp-color-neutral-dark);
+  border-bottom: 0;
+  border-radius: 0;
+  background: var(--dp-color-neutral-white);
+}
+
+.ui-autocomplete.searchbar-autocomplete li a,
+.ui-autocomplete.searchbar-autocomplete li a.ui-state-focus {
+  border-radius: 0;
+}
+
 #header a:focus,
 #header button:focus,
 #header .btn:focus {
