@@ -33,3 +33,7 @@ assets:
         path: assets/js/header.js
         position: bottom
         priority: 300
+      - id: designpresta-searchbar
+        path: assets/js/searchbar.js
+        position: bottom
+        priority: 310
