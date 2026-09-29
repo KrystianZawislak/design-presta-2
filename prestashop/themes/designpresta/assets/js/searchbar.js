@@ -12,6 +12,11 @@
     }
 
     instance._resizeMenu = function () {
+      this.options.position = {
+        my: 'left top',
+        at: 'left bottom',
+        of: $widget
+      };
       this.menu.element.outerWidth($widget.outerWidth());
     };
   });
