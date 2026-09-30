@@ -111,18 +111,34 @@ w Google Analytics w `Administracja → Strumienie danych → Twój strumień in
 Bez identyfikatora przełącznik `Wysyłaj dane do Google Analytics` nie da się włączyć —
 moduł po instalacji jest wyłączony i nie dokłada do strony ani jednej linijki.
 
-Moduł wysyła odsłony stron oraz zdarzenie `purchase` po złożeniu zamówienia: numer zamówienia,
-kwotę, podatek, koszt dostawy, walutę i listę kupionych pozycji. Odświeżenie strony
-z potwierdzeniem nie wysyła zdarzenia drugi raz.
-
-`Tryb diagnostyczny` dokłada do każdego trafienia znacznik `debug_mode`, dzięki któremu ruch
-widać na żywo w raporcie DebugView w Google Analytics. Na produkcji trzymaj go wyłączonym.
+`Tryb diagnostyczny` oznacza każde trafienie znacznikiem `debug_mode`, dzięki któremu ruch
+widać na żywo w raporcie DebugView. Na produkcji trzymaj go wyłączonym.
 
 ### 6. Ustawienia na czas pracy nad motywem
 
 `Parametry zaawansowane → Wydajność` — wyłącz `Buforowanie CSS`, `Buforowanie JavaScript`
 i `Pamięć podręczna Smarty`. Bez tego ostatniego zmiany w szablonach nie będą widoczne
 mimo poprawnego kodu. Przed wdrożeniem produkcyjnym wszystkie trzy wracają na włączone.
+
+## Jak działa analityka
+
+Dane do Google wysyła przeglądarka klienta, nie serwer sklepu. Skrypt `gtag.js` strzela
+żądaniem pod `google-analytics.com/g/collect`, a nazwa zdarzenia i liczby lecą w parametrach.
+Moduł tylko wstawia ten skrypt w stronę — dwoma hookami, bez dotykania rdzenia ani szablonów
+motywu:
+
+| Hook | Kiedy | Co wysyła |
+|------|-------|-----------|
+| `displayHeader` | `<head>` każdej strony sklepu | odsłonę |
+| `displayOrderConfirmation` | strona potwierdzenia zamówienia | `purchase` z kwotą i pozycjami |
+
+Dane zamówienia moduł dostaje od PrestaShopu gotowym obiektem `Order`. Odświeżenie
+potwierdzenia nie wysyła zdarzenia drugi raz.
+
+Identyfikator pomiaru siedzi w `Configuration`, nie w kodzie — dlatego nie trafia do repo
+i zmienia się z Back Office. Bez poprawnego `G-XXXXXXXXXX` moduł nie dokłada do strony niczego.
+
+Poza zakresem: `view_item`, `add_to_cart` i zgoda na cookies.
 
 ## Zatrzymanie
 
