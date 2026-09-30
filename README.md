@@ -2,6 +2,23 @@
 
 Sklep PrestaShop 8.2.7 (PHP 8.1) uruchamiany w Dockerze.
 
+## Zakres
+
+Nagłówek sklepu, nie cały sklep — child theme motywu `classic`. Reszta strony zostaje taka,
+jaką daje PrestaShop. Do tego moduł **Design Analytics**, który raportuje ruch i sprzedaż
+do Google Analytics 4.
+
+Design: [Ecommerce Search & Discovery UI Kit](https://www.figma.com/community/file/981543186947734892/ecommerce-search-discovery-ui-kit)
+z Figma Community. Widok desktopowy i mobilny odwzorowane 1:1. Kit rysuje tylko te dwie
+szerokości — 375 i 1440 px. Układ pomiędzy nimi jest prosty i skaluje się płynnie.
+
+![Nagłówek na desktopie](docs/header-desktop.png)
+
+<p>
+  <img src="docs/header-mobile.png" alt="Nagłówek na mobilce" width="330">
+  <img src="docs/header-mobile-menu.png" alt="Menu mobilne" width="330">
+</p>
+
 ## Uruchomienie
 
 ```bash
@@ -38,11 +55,104 @@ Po zakończeniu instalacji PrestaShop wymaga usunięcia katalogu instalatora:
 docker exec presta2-shop rm -rf /var/www/html/install
 ```
 
-Nazwę wygenerowanego katalogu panelu administracyjnego odczytasz tak:
+Wejdź na `http://localhost:1001/admin/`. PrestaShop przy tym pierwszym wejściu zmienia nazwę
+katalogu panelu na losową i od razu przekierowuje Cię pod nowy adres — znajdziesz go w pasku
+przeglądarki. Kolejne wejścia na `/admin/` dają już 404, bo stary katalog nie istnieje.
+
+Jeśli zgubisz ten adres, odczytasz go tak:
 
 ```bash
 docker exec presta2-shop sh -c 'ls -d /var/www/html/admin*'
 ```
+
+## Po instalacji
+
+Repo nie zawiera dumpu bazy, więc świeża instalacja startuje z katalogiem demo PrestaShopu
+i motywem `classic`. Poniższe kroki doprowadzają sklep do stanu, dla którego ten motyw
+był robiony.
+
+### 1. Motyw
+
+`Wygląd → Szablony` → w sekcji z dostępnymi szablonami użyj **Design Presta**. Motyw da się
+też wybrać wcześniej, w kroku `Zawartość Twojego sklepu` kreatora instalacji.
+
+Po przełączeniu motywu i po instalacji każdego z modułów skasuj skompilowany cache:
+
+```bash
+docker exec presta2-shop sh -c 'rm -rf /var/www/html/var/cache/dev /var/www/html/var/cache/prod'
+```
+
+Bez tego PrestaShop czyta stary katalog tłumaczeń i część napisów zostaje po angielsku —
+na froncie `Find a store` zamiast `Znajdź sklep`, a w panelu modułu całe etykiety formularza.
+
+### 2. Moduł Design Menu
+
+`Moduły → Menedżer modułów` → wyszukaj **Design Menu** → *Zainstaluj*. To samo z linii poleceń:
+
+```bash
+docker exec presta2-shop php bin/console prestashop:module install designmenu
+```
+
+Instalacja zakłada trzy działy nagłówka — Kobieta, Mężczyzna, Dziecko — aktywne i puste.
+Dział bez przypisanych pozycji nie filtruje menu, więc do czasu konfiguracji z punktu 4
+każdy z nich pokazuje pełne drzewo kategorii.
+
+### 3. Katalog i menu
+
+Identyfikatory kategorii są danymi konkretnej bazy, więc tego kroku nie da się zaszyć
+w kodzie modułu — trzeba go wyklikać raz:
+
+1. `Katalog → Kategorie` — dodaj kategorie, które mają stać w nagłówku.
+2. `Moduły → Menedżer modułów` → **Główne menu** → *Konfiguruj* — przenieś te kategorie
+   do wybranych pozycji menu.
+
+### 4. Przypisanie kategorii do działów
+
+`Moduły → Menedżer modułów` → **Design Menu** → *Konfiguruj*. Przy każdym dziale zaznacz
+pozycje menu, które ma pokazywać. Etykiety działów są polami per język — tam też zmienisz
+ich nazwy.
+
+### 5. Moduł Design Analytics
+
+`Moduły → Menedżer modułów` → wyszukaj **Analityka Google** → *Zainstaluj*. To samo z linii poleceń:
+
+```bash
+docker exec presta2-shop php bin/console prestashop:module install designanalytics
+```
+
+Potem *Konfiguruj* i wklej identyfikator pomiaru GA4 w postaci `G-XXXXXXXXXX`. Znajdziesz go
+w Google Analytics w `Administracja → Strumienie danych → Twój strumień internetowy`.
+Bez identyfikatora przełącznik `Wysyłaj dane do Google Analytics` nie da się włączyć —
+moduł po instalacji jest wyłączony i nie dokłada do strony ani jednej linijki.
+
+`Tryb diagnostyczny` oznacza każde trafienie znacznikiem `debug_mode`, dzięki któremu ruch
+widać na żywo w raporcie DebugView. Na produkcji trzymaj go wyłączonym.
+
+### 6. Ustawienia na czas pracy nad motywem
+
+`Parametry zaawansowane → Wydajność` — wyłącz `Buforowanie CSS`, `Buforowanie JavaScript`
+i `Pamięć podręczna Smarty`. Bez tego ostatniego zmiany w szablonach nie będą widoczne
+mimo poprawnego kodu. Przed wdrożeniem produkcyjnym wszystkie trzy wracają na włączone.
+
+## Jak działa analityka
+
+Dane do Google wysyła przeglądarka klienta, nie serwer sklepu. Skrypt `gtag.js` strzela
+żądaniem pod `google-analytics.com/g/collect`, a nazwa zdarzenia i liczby lecą w parametrach.
+Moduł tylko wstawia ten skrypt w stronę — dwoma hookami, bez dotykania rdzenia ani szablonów
+motywu:
+
+| Hook | Kiedy | Co wysyła |
+|------|-------|-----------|
+| `displayHeader` | `<head>` każdej strony sklepu | odsłonę |
+| `displayOrderConfirmation` | strona potwierdzenia zamówienia | `purchase` z kwotą i pozycjami |
+
+Dane zamówienia moduł dostaje od PrestaShopu gotowym obiektem `Order`. Odświeżenie
+potwierdzenia nie wysyła zdarzenia drugi raz.
+
+Identyfikator pomiaru siedzi w `Configuration`, nie w kodzie — dlatego nie trafia do repo
+i zmienia się z Back Office. Bez poprawnego `G-XXXXXXXXXX` moduł nie dokłada do strony niczego.
+
+Poza zakresem: `view_item`, `add_to_cart` i zgoda na cookies.
 
 ## Zatrzymanie
 

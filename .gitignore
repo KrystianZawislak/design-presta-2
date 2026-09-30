@@ -8,7 +8,12 @@ db/dump*.sql
 /prestashop/*
 !/prestashop/themes
 /prestashop/themes/*
+!/prestashop/themes/designpresta
 !/prestashop/modules
 /prestashop/modules/*
+!/prestashop/modules/designmenu
+!/prestashop/modules/designanalytics
 !/prestashop/override
 /prestashop/override/*
+CLAUDE.md
+/prestashop/modules/*/config*.xml

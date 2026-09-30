@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="modules/designmenu/views/templates/hook/modes.tpl" source-language="en-US" target-language="pl-PL" datatype="plaintext">
+    <body>
+      <trans-unit id="1" resname="Shop section">
+        <source>Shop section</source>
+        <target>Dział sklepu</target>
+      </trans-unit>
+      <trans-unit id="2" resname="Women">
+        <source>Women</source>
+        <target>Kobieta</target>
+      </trans-unit>
+      <trans-unit id="3" resname="Men">
+        <source>Men</source>
+        <target>Mężczyzna</target>
+      </trans-unit>
+      <trans-unit id="4" resname="Kids">
+        <source>Kids</source>
+        <target>Dziecko</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
