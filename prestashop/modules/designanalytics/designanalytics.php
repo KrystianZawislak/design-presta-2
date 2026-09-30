@@ -154,7 +154,7 @@ class DesignAnalytics extends Module
         $precision = ini_set('serialize_precision', '-1');
 
         $json = (string) json_encode(
-            $payload,
+            $payload ?: new stdClass(),
             JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE
         );
 
