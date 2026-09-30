@@ -8,8 +8,8 @@ Nagłówek sklepu, nie cały sklep — child theme motywu `classic`. Reszta stro
 jaką daje PrestaShop.
 
 Design: [Ecommerce Search & Discovery UI Kit](https://www.figma.com/community/file/981543186947734892/ecommerce-search-discovery-ui-kit)
-z Figma Community. Widok desktopowy i mobilny odwzorowane 1:1. Kit definiuje tylko te dwie
-siatki — 375 i 1440 px — więc zachowanie pomiędzy nimi jest naszym rozwiązaniem.
+z Figma Community. Widok desktopowy i mobilny odwzorowane 1:1. Kit rysuje tylko te dwie
+szerokości — 375 i 1440 px. Układ pomiędzy nimi jest prosty i skaluje się płynnie.
 
 ![Nagłówek na desktopie](docs/header-desktop.png)
 
