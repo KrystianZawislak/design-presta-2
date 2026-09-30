@@ -293,7 +293,7 @@
 .header-top-mobile-trigger {
   display: flex;
   align-items: center;
-  gap: var(--dp-space-12);
+  gap: var(--dp-space-8);
   flex: 0 0 auto;
   padding: 0;
   border: 0;
@@ -445,7 +445,7 @@
   min-height: var(--dp-space-40);
   color: var(--dp-color-neutral-black);
   font-family: var(--dp-font-family-base);
-  font-size: var(--dp-font-size-small);
+  font-size: var(--dp-font-size-body);
   font-weight: var(--dp-font-weight-regular);
   line-height: var(--dp-line-height-small);
   letter-spacing: var(--dp-letter-spacing-label);

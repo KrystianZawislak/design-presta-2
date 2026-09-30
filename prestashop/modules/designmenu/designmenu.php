@@ -135,21 +135,42 @@ class DesignMenu extends Module
 
     public function hookActionFrontControllerInitAfter()
     {
-        $identifiers = DesignMenuModeItem::getForMode($this->getSelectedModeId(), (int) $this->context->shop->id);
-
-        if (!$identifiers) {
-            return;
-        }
-
         $tree = $this->getMainMenuTree();
 
         if (!$tree) {
             return;
         }
 
+        $this->context->smarty->assign('designmenu_sections', $this->getSections($tree['children']));
+
+        $identifiers = DesignMenuModeItem::getForMode($this->getSelectedModeId(), (int) $this->context->shop->id);
+
+        if (!$identifiers) {
+            return;
+        }
+
         $tree['children'] = $this->filterNodes($tree['children'], array_fill_keys($identifiers, true));
 
         $this->context->smarty->assign('designmenu_menu', $tree);
+    }
+
+    protected function getSections(array $nodes): array
+    {
+        $idShop = (int) $this->context->shop->id;
+        $sections = [];
+
+        foreach ($this->getActiveModes() as $mode) {
+            $idMode = (int) $mode[DesignMenuMode::$definition['primary']];
+            $identifiers = DesignMenuModeItem::getForMode($idMode, $idShop);
+
+            $sections[] = [
+                'id' => $idMode,
+                'label' => $mode['label'],
+                'children' => $identifiers ? $this->filterNodes($nodes, array_fill_keys($identifiers, true)) : $nodes,
+            ];
+        }
+
+        return $sections;
     }
 
     protected function filterNodes(array $nodes, array $allowed): array

@@ -39,12 +39,12 @@
     {/if}
 {/function}
 
-{function name="drawerRows" nodes=[]}
+{function name="drawerRows" nodes=[] prefix=''}
   <ul class="dp-menu__list">
     {foreach from=$nodes item=node}
       <li class="dp-menu__item">
         {if $node.children|count}
-          <button type="button" class="dp-menu__row" data-dp-menu-open="dp-menu-view-{$node.page_identifier|regex_replace:'/[^A-Za-z0-9_-]/':'-'}">
+          <button type="button" class="dp-menu__row" data-dp-menu-open="dp-menu-view-{$prefix}{$node.page_identifier|regex_replace:'/[^A-Za-z0-9_-]/':'-'}">
             <span class="dp-menu__row-label">{$node.label}</span>
             {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/chevron-right.svg"}
           </button>
@@ -59,7 +59,7 @@
   </ul>
 {/function}
 
-{function name="drawerViews" nodes=[] viewId='dp-menu-view-root' parentId='' title='' url=''}
+{function name="drawerViews" nodes=[] viewId='dp-menu-view-root' parentId='' title='' url='' prefix=''}
   <div class="dp-menu__view" id="{$viewId}" data-dp-menu-view{if $parentId} data-dp-menu-parent="{$parentId}" hidden{/if}>
     {if $parentId}
       <button type="button" class="dp-menu__back" data-dp-menu-open="{$parentId}">
@@ -67,25 +67,28 @@
         <span>{l s='Back' d='Shop.Theme.Actions'}</span>
       </button>
       <p class="dp-menu__title">{$title}</p>
-      <ul class="dp-menu__list">
-        <li class="dp-menu__item">
-          <a class="dp-menu__row dp-menu__row--all" href="{$url}">
-            <span class="dp-menu__row-label">{l s='See all %category%' sprintf=['%category%' => $title] d='Shop.Theme.Catalog'}</span>
-            {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/chevron-right.svg"}
-          </a>
-        </li>
-      </ul>
+      {if $url}
+        <ul class="dp-menu__list">
+          <li class="dp-menu__item">
+            <a class="dp-menu__row dp-menu__row--all" href="{$url}">
+              <span class="dp-menu__row-label">{l s='See all %category%' sprintf=['%category%' => $title] d='Shop.Theme.Catalog'}</span>
+              {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/chevron-right.svg"}
+            </a>
+          </li>
+        </ul>
+      {/if}
     {/if}
-    {drawerRows nodes=$nodes}
+    {drawerRows nodes=$nodes prefix=$prefix}
   </div>
   {foreach from=$nodes item=node}
     {if $node.children|count}
       {drawerViews
         nodes=$node.children
-        viewId="dp-menu-view-`$node.page_identifier|regex_replace:'/[^A-Za-z0-9_-]/':'-'`"
+        viewId="dp-menu-view-`$prefix``$node.page_identifier|regex_replace:'/[^A-Za-z0-9_-]/':'-'`"
         parentId=$viewId
         title=$node.label
-        url=$node.url}
+        url=$node.url
+        prefix=$prefix}
     {/if}
   {/foreach}
 {/function}
@@ -107,7 +110,30 @@
       </button>
     </div>
     <nav class="dp-menu__views" aria-label="{l s='Main menu' d='Shop.Theme.Global'}">
-      {drawerViews nodes=$menu_root.children}
+      {if $designmenu_sections}
+        <div class="dp-menu__view" id="dp-menu-view-root" data-dp-menu-view>
+          <ul class="dp-menu__list">
+            {foreach from=$designmenu_sections item=section}
+              <li class="dp-menu__item">
+                <button type="button" class="dp-menu__row" data-dp-menu-open="dp-menu-view-section-{$section.id|intval}">
+                  <span class="dp-menu__row-label">{$section.label}</span>
+                  {include file="`$smarty.const._PS_THEME_DIR_`assets/img/icons/chevron-right.svg"}
+                </button>
+              </li>
+            {/foreach}
+          </ul>
+        </div>
+        {foreach from=$designmenu_sections item=section}
+          {drawerViews
+            nodes=$section.children
+            viewId="dp-menu-view-section-`$section.id|intval`"
+            parentId='dp-menu-view-root'
+            title=$section.label
+            prefix="section-`$section.id|intval`-"}
+        {/foreach}
+      {else}
+        {drawerViews nodes=$menu_root.children}
+      {/if}
     </nav>
     <div class="dp-menu__links">
       {if $customer.is_logged}
