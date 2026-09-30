@@ -390,7 +390,7 @@
   color: var(--dp-color-neutral-black);
   font-family: var(--dp-font-family-base);
   font-size: var(--dp-font-size-subhead);
-  font-weight: var(--dp-font-weight-bold);
+  font-weight: var(--dp-font-weight-semibold);
   line-height: var(--dp-line-height-subhead);
   letter-spacing: var(--dp-letter-spacing-subhead);
 }

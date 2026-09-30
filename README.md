@@ -4,30 +4,19 @@ Sklep PrestaShop 8.2.7 (PHP 8.1) uruchamiany w Dockerze.
 
 ## Zakres
 
-To nie jest kompletny sklep. Zakres to **nagłówek i stopka** zbudowane jako child theme
-motywu `classic` — reszta strony zostaje taka, jaką daje PrestaShop. Checkout, listing
-produktów, karta produktu i panel klienta są celowo nietknięte. Na dziś zrobiony jest
-nagłówek; stopka czeka na swoją kolej.
+Nagłówek sklepu, nie cały sklep — child theme motywu `classic`. Reszta strony zostaje taka,
+jaką daje PrestaShop.
 
-Design pochodzi z kitu [Ecommerce Search & Discovery UI Kit](https://www.figma.com/community/file/981543186947734892/ecommerce-search-discovery-ui-kit)
-z Figma Community. Odwzorowanie nie jest 1:1 — makieta rysuje idealny przypadek, a tutaj
-te same elementy musiały wejść w istniejące moduły PrestaShopu (`ps_mainmenu`, `ps_searchbar`,
-`ps_shoppingcart`, `ps_customersignin`) i w ich strukturę HTML. Część rzeczy jest więc
-przybliżeniem, część świadomie rozwiązana inaczej, żeby nie przepisywać działających funkcji
-od nowa. Kit definiuje tylko dwie siatki — 375 i 1440 px — więc szerokość, przy której układ
-przełącza się na mobilny, jest decyzją projektową, a nie wartością z makiety.
+Design: [Ecommerce Search & Discovery UI Kit](https://www.figma.com/community/file/981543186947734892/ecommerce-search-discovery-ui-kit)
+z Figma Community. Widok desktopowy i mobilny odwzorowane 1:1. Kit definiuje tylko te dwie
+siatki — 375 i 1440 px — więc zachowanie pomiędzy nimi jest naszym rozwiązaniem.
 
 ![Nagłówek na desktopie](docs/header-desktop.png)
 
-Pasek działów (Kobieta / Mężczyzna / Dziecko) obsługuje własny moduł `designmenu`:
-wybór działu zawęża pozycje głównego menu, a same działy i ich nazwy są edytowalne
-w Back Office, osobno dla każdego języka.
-
-![Podpowiedzi wyszukiwarki](docs/header-search.png)
-
-Wyszukiwarka korzysta z podpowiedzi wbudowanych w `ps_searchbar`; motyw zmienia ich wygląd
-i sposób pozycjonowania, żeby lista trzymała szerokość pola i nie uciekała nad nie przy
-dłuższych wynikach.
+<p>
+  <img src="docs/header-mobile.png" alt="Nagłówek na mobilce" width="330">
+  <img src="docs/header-mobile-menu.png" alt="Menu mobilne" width="330">
+</p>
 
 ## Uruchomienie
 
