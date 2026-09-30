@@ -36,6 +36,7 @@ class DesignMenu extends Module
     {
         return parent::install()
             && $this->installDb()
+            && $this->seedModes()
             && $this->registerHook('displayDesignMenuModes')
             && $this->registerHook('actionFrontControllerInitAfter')
             && Configuration::updateValue(self::ENABLED, 1);
@@ -81,6 +82,40 @@ class DesignMenu extends Module
 
         foreach ($queries as $query) {
             if (!Db::getInstance()->execute($query)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    protected function seedModes(): bool
+    {
+        $table = _DB_PREFIX_ . DesignMenuMode::$definition['table'];
+
+        if ((int) Db::getInstance()->getValue('SELECT COUNT(*) FROM `' . $table . '`')) {
+            return true;
+        }
+
+        $shops = Shop::getShops(true, null, true);
+        $translators = [];
+        $position = 1;
+
+        foreach (Language::getLanguages(false) as $language) {
+            $translators[(int) $language['id_lang']] = Context::getContext()->getTranslatorFromLocale($language['locale']);
+        }
+
+        foreach (['Women', 'Men', 'Kids'] as $label) {
+            $mode = new DesignMenuMode();
+            $mode->position = $position++;
+            $mode->active = true;
+            $mode->id_shop_list = $shops;
+
+            foreach ($translators as $idLang => $translator) {
+                $mode->label[$idLang] = $translator->trans($label, [], 'Modules.Designmenu.Shop');
+            }
+
+            if (!$mode->add()) {
                 return false;
             }
         }
