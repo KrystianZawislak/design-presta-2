@@ -7,6 +7,8 @@ if (!defined('_PS_VERSION_')) {
 require_once __DIR__ . '/classes/DesignMenuModeItem.php';
 require_once __DIR__ . '/classes/DesignMenuMode.php';
 
+use Symfony\Component\Translation\Loader\XliffFileLoader;
+
 class DesignMenu extends Module
 {
     const ENABLED = 'DESIGNMENU_ENABLED';
@@ -98,21 +100,21 @@ class DesignMenu extends Module
         }
 
         $shops = Shop::getShops(true, null, true);
-        $translators = [];
+        $labels = [];
         $position = 1;
 
         foreach (Language::getLanguages(false) as $language) {
-            $translators[(int) $language['id_lang']] = Context::getContext()->getTranslatorFromLocale($language['locale']);
+            $labels[(int) $language['id_lang']] = $this->seedLabels($language['locale']);
         }
 
-        foreach (['Women', 'Men', 'Kids'] as $label) {
+        foreach (['Women', 'Men', 'Kids'] as $source) {
             $mode = new DesignMenuMode();
             $mode->position = $position++;
             $mode->active = true;
             $mode->id_shop_list = $shops;
 
-            foreach ($translators as $idLang => $translator) {
-                $mode->label[$idLang] = $translator->trans($label, [], 'Modules.Designmenu.Shop');
+            foreach ($labels as $idLang => $translations) {
+                $mode->label[$idLang] = $translations[$source] ?? $source;
             }
 
             if (!$mode->add()) {
@@ -121,6 +123,18 @@ class DesignMenu extends Module
         }
 
         return true;
+    }
+
+    protected function seedLabels(string $locale): array
+    {
+        $domain = 'Modules.Designmenu.Shop';
+        $file = _PS_MODULE_DIR_ . $this->name . '/translations/' . $locale . '/ModulesDesignmenuShop.' . $locale . '.xlf';
+
+        if (!is_file($file)) {
+            return [];
+        }
+
+        return (new XliffFileLoader())->load($file, $locale, $domain)->all($domain);
     }
 
     protected function uninstallDb(): bool
