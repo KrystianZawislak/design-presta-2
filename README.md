@@ -55,11 +55,15 @@ Po zakończeniu instalacji PrestaShop wymaga usunięcia katalogu instalatora:
 docker exec presta2-shop rm -rf /var/www/html/install
 ```
 
-Nazwę wygenerowanego katalogu panelu administracyjnego odczytasz tak:
+PrestaShop zmienia nazwę katalogu panelu administracyjnego dopiero przy pierwszej próbie
+wejścia na `http://localhost:1001/admin/`. Wejdź tam raz — dostaniesz 404 — a potem odczytaj
+nową nazwę:
 
 ```bash
 docker exec presta2-shop sh -c 'ls -d /var/www/html/admin*'
 ```
+
+Uruchomiona wcześniej komenda zwróci jeszcze `admin`, a ten adres już nie działa.
 
 ## Po instalacji
 
@@ -69,7 +73,14 @@ był robiony.
 
 ### 1. Motyw
 
-`Wygląd → Motywy i logo` → w sekcji z dostępnymi motywami użyj **Design Presta**.
+`Wygląd → Szablony` → w sekcji z dostępnymi szablonami użyj **Design Presta**. Zaraz po
+przełączeniu skasuj skompilowany cache, inaczej część napisów w nagłówku zostanie po angielsku:
+
+```bash
+docker exec presta2-shop sh -c 'rm -rf /var/www/html/var/cache/dev /var/www/html/var/cache/prod'
+```
+
+Motyw da się też wybrać wcześniej, w kroku `Zawartość Twojego sklepu` kreatora instalacji.
 
 ### 2. Moduł Design Menu
 
