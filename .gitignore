@@ -12,6 +12,7 @@ db/dump*.sql
 !/prestashop/modules
 /prestashop/modules/*
 !/prestashop/modules/designmenu
+!/prestashop/modules/designanalytics
 !/prestashop/override
 /prestashop/override/*
 CLAUDE.md

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="modules/designanalytics/designanalytics.php" source-language="en-US" target-language="pl-PL" datatype="plaintext">
+    <body>
+      <trans-unit id="1" resname="Design Analytics">
+        <source>Design Analytics</source>
+        <target>Analityka Google</target>
+      </trans-unit>
+      <trans-unit id="2" resname="Sends page views and completed orders to Google Analytics 4.">
+        <source>Sends page views and completed orders to Google Analytics 4.</source>
+        <target>Wysyła odsłony stron i złożone zamówienia do Google Analytics 4.</target>
+      </trans-unit>
+      <trans-unit id="3" resname="Google Analytics 4">
+        <source>Google Analytics 4</source>
+        <target>Google Analytics 4</target>
+      </trans-unit>
+      <trans-unit id="4" resname="Measurement ID">
+        <source>Measurement ID</source>
+        <target>Identyfikator pomiaru</target>
+      </trans-unit>
+      <trans-unit id="5" resname="Google Analytics shows it under Admin, Data streams, your web stream. It looks like G-XXXXXXXXXX.">
+        <source>Google Analytics shows it under Admin, Data streams, your web stream. It looks like G-XXXXXXXXXX.</source>
+        <target>Znajdziesz go w Google Analytics w Administracja, Strumienie danych, Twój strumień internetowy. Ma postać G-XXXXXXXXXX.</target>
+      </trans-unit>
+      <trans-unit id="6" resname="Send data to Google Analytics">
+        <source>Send data to Google Analytics</source>
+        <target>Wysyłaj dane do Google Analytics</target>
+      </trans-unit>
+      <trans-unit id="7" resname="Turn this off to stop the tracking without clearing the measurement ID.">
+        <source>Turn this off to stop the tracking without clearing the measurement ID.</source>
+        <target>Wyłącz, aby wstrzymać zbieranie danych bez usuwania identyfikatora pomiaru.</target>
+      </trans-unit>
+      <trans-unit id="8" resname="Debug mode">
+        <source>Debug mode</source>
+        <target>Tryb diagnostyczny</target>
+      </trans-unit>
+      <trans-unit id="9" resname="Marks every hit as a debug hit so it shows up in the DebugView report. Keep it off in production.">
+        <source>Marks every hit as a debug hit so it shows up in the DebugView report. Keep it off in production.</source>
+        <target>Oznacza każde trafienie jako diagnostyczne, dzięki czemu widać je w raporcie DebugView. Na produkcji trzymaj to wyłączone.</target>
+      </trans-unit>
+      <trans-unit id="10" resname="Settings saved.">
+        <source>Settings saved.</source>
+        <target>Ustawienia zapisane.</target>
+      </trans-unit>
+      <trans-unit id="11" resname="The measurement ID must look like G-XXXXXXXXXX.">
+        <source>The measurement ID must look like G-XXXXXXXXXX.</source>
+        <target>Identyfikator pomiaru musi mieć postać G-XXXXXXXXXX.</target>
+      </trans-unit>
+      <trans-unit id="12" resname="Add a measurement ID before you turn the tracking on.">
+        <source>Add a measurement ID before you turn the tracking on.</source>
+        <target>Dodaj identyfikator pomiaru, zanim włączysz zbieranie danych.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -5,7 +5,8 @@ Sklep PrestaShop 8.2.7 (PHP 8.1) uruchamiany w Dockerze.
 ## Zakres
 
 Nagłówek sklepu, nie cały sklep — child theme motywu `classic`. Reszta strony zostaje taka,
-jaką daje PrestaShop.
+jaką daje PrestaShop. Do tego moduł **Design Analytics**, który raportuje ruch i sprzedaż
+do Google Analytics 4.
 
 Design: [Ecommerce Search & Discovery UI Kit](https://www.figma.com/community/file/981543186947734892/ecommerce-search-discovery-ui-kit)
 z Figma Community. Widok desktopowy i mobilny odwzorowane 1:1. Kit rysuje tylko te dwie
@@ -97,7 +98,27 @@ w kodzie modułu — trzeba go wyklikać raz:
 pozycje menu, które ma pokazywać. Etykiety działów są polami per język — tam też zmienisz
 ich nazwy.
 
-### 5. Ustawienia na czas pracy nad motywem
+### 5. Moduł Design Analytics
+
+`Moduły → Menedżer modułów` → wyszukaj **Analityka Google** → *Zainstaluj*. To samo z linii poleceń:
+
+```bash
+docker exec presta2-shop php bin/console prestashop:module install designanalytics
+```
+
+Potem *Konfiguruj* i wklej identyfikator pomiaru GA4 w postaci `G-XXXXXXXXXX`. Znajdziesz go
+w Google Analytics w `Administracja → Strumienie danych → Twój strumień internetowy`.
+Bez identyfikatora przełącznik `Wysyłaj dane do Google Analytics` nie da się włączyć —
+moduł po instalacji jest wyłączony i nie dokłada do strony ani jednej linijki.
+
+Moduł wysyła odsłony stron oraz zdarzenie `purchase` po złożeniu zamówienia: numer zamówienia,
+kwotę, podatek, koszt dostawy, walutę i listę kupionych pozycji. Odświeżenie strony
+z potwierdzeniem nie wysyła zdarzenia drugi raz.
+
+`Tryb diagnostyczny` dokłada do każdego trafienia znacznik `debug_mode`, dzięki któremu ruch
+widać na żywo w raporcie DebugView w Google Analytics. Na produkcji trzymaj go wyłączonym.
+
+### 6. Ustawienia na czas pracy nad motywem
 
 `Parametry zaawansowane → Wydajność` — wyłącz `Buforowanie CSS`, `Buforowanie JavaScript`
 i `Pamięć podręczna Smarty`. Bez tego ostatniego zmiany w szablonach nie będą widoczne
